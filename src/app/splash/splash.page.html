@@ -1,13 +1,41 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>splash</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">splash</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="splash-container">
+    
+    <div class="header-section">
+      <img src="../../assets/aromic logo.png" class="logo" alt="Aromic Logo">
+      <p class="subtitle">Architecture & Interior Design</p>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="top-row">
+        <img src="../../assets/img1.png" class="img-small" alt="Interior 1">
+        <img src="../../assets/img2.png" class="img-small" alt="Interior 2">
+      </div>
+      <div class="main-img-container">
+        <img src="../../assets/img3.png" class="img-large" alt="Featured">
+        
+        <div class="button-overlay">
+          <ion-button fill="outline" shape="round" class="get-started-btn" routerLink="/login">
+            GET STARTED
+          </ion-button>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-section">
+      <div class="pagination-dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+      <p class="tagline">Crafting Spaces, Defining Luxury.</p>
+      
+      <div class="social-icons">
+        <ion-icon name="logo-facebook"></ion-icon>
+        <ion-icon name="logo-instagram"></ion-icon>
+        <ion-icon name="logo-linkedin"></ion-icon>
+      </div>
+    </div>
+
+  </div>
 </ion-content>
