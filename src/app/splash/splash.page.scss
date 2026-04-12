@@ -37,8 +37,8 @@
     
     .button-overlay {
       position: absolute;
-      bottom: 5px;
-      left: 200px;
+      bottom: 10px;
+      left: 190px;
       right: 0;
       display: flex;
       justify-content: center;
@@ -60,7 +60,7 @@
 
 .footer-section {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
 
   .pagination-dots {
     display: flex;
