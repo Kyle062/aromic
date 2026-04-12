@@ -7,7 +7,8 @@ import {
   IonButton, 
   IonIcon, 
   IonCheckbox, 
-  IonLabel 
+  IonLabel,
+  IonItem, // Added this
 } from '@ionic/angular/standalone';
 import { RouterLink } from '@angular/router';
 import { addIcons } from 'ionicons';
@@ -27,7 +28,8 @@ import {
   standalone: true,
   imports: [
     IonContent, IonInput, IonButton, IonIcon, 
-    IonCheckbox, IonLabel, CommonModule, FormsModule, RouterLink
+    IonCheckbox, IonLabel, IonItem, CommonModule, 
+    FormsModule, RouterLink
   ]
 })
 export class LoginPage {
@@ -36,6 +38,7 @@ export class LoginPage {
   passwordIcon = 'eye-off-outline';
 
   constructor() {
+    // This registers the icons for use with <ion-icon>
     addIcons({ 
       logoFacebook, logoInstagram, logoLinkedin, 
       logoGoogle, eyeOutline, eyeOffOutline 

@@ -1,19 +1,23 @@
 <ion-content [fullscreen]="true">
   <div class="login-wrapper">
-    
-    <div class="header-section">
-      <img src="assets/aromic logo.png" class="logo" alt="Aromic Logo">
-      <p class="subtitle">Architecture & Interior Design</p>
-    </div>
-
     <div class="glass-card">
+      <div class="header-section">
+        <img src="assets/aromic logo.png" class="logo" alt="Aromic Logo" />
+        <p class="subtitle">Architecture & Interior Design</p>
+      </div>
       <h2 class="welcome-text">Welcome back to Your Studio!</h2>
-      <p class="instr-text">Enter your credentials to continue your design journey</p>
+      <p class="instr-text">
+        Enter your credentials to continue your design journey
+      </p>
 
       <div class="form-container">
         <div class="input-group">
           <label>Email/ Phone Number:</label>
-          <ion-input type="email" placeholder="Lilla110605@gmail.com" class="custom-input"></ion-input>
+          <ion-input
+            type="email"
+            placeholder="Lilla110605@gmail.com"
+            class="custom-input"
+          ></ion-input>
         </div>
 
         <div class="input-group">
@@ -22,13 +26,23 @@
             <a class="forgot-link">Forgot Password?</a>
           </div>
           <div class="password-wrapper">
-            <ion-input [type]="passwordType" placeholder="............" class="custom-input"></ion-input>
-            <ion-icon [name]="passwordIcon" (click)="togglePassword()" class="toggle-icon"></ion-icon>
+            <ion-input
+              [type]="passwordType"
+              placeholder=""
+              class="custom-input"
+            ></ion-input>
+            <ion-icon
+              [name]="passwordIcon"
+              (click)="togglePassword()"
+              class="toggle-icon"
+            ></ion-icon>
           </div>
         </div>
 
         <div class="remember-me">
-          <ion-checkbox labelPlacement="end" justify="start">Remember me</ion-checkbox>
+          <ion-checkbox labelPlacement="end" justify="start"
+            >Remember me</ion-checkbox
+          >
         </div>
 
         <ion-button expand="block" class="login-btn">LOGIN</ion-button>
@@ -41,10 +55,15 @@
 
         <div class="social-auth">
           <ion-icon name="logo-google" class="social-icon google"></ion-icon>
-          <ion-icon name="logo-facebook" class="social-icon facebook"></ion-icon>
+          <ion-icon
+            name="logo-facebook"
+            class="social-icon facebook"
+          ></ion-icon>
         </div>
 
-        <p class="signup-prompt">Doesn't have an account? <a routerLink="/signup">Sign up</a></p>
+        <p class="signup-prompt">
+          Doesn't have an account? <a routerLink="/signup">Sign up</a>
+        </p>
       </div>
     </div>
 
@@ -55,13 +74,6 @@
         <span class="dot"></span>
       </div>
       <p class="luxury-text">Crafting Spaces. Defining Luxury.</p>
-      <div class="bottom-socials">
-        <ion-icon name="logo-facebook"></ion-icon>
-        <ion-icon name="logo-instagram"></ion-icon>
-        <ion-icon name="logo-linkedin"></ion-icon>
-      </div>
-      <p class="bottom-login-link">Already have an account? <a href="#">Log In</a></p>
     </div>
-
   </div>
 </ion-content>
