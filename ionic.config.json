@@ -1,0 +1,7 @@
+{
+  "name": "aromic-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
