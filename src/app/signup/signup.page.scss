@@ -1,0 +1,317 @@
+.login-wrapper {
+  /* HEIGHT CONTROL: Change this to control wrapper height */
+  /* Options: 100vh (full screen), 100% (parent), auto, 500px */
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  background: url("/assets/aromic background.png") no-repeat center center /
+    cover;
+}
+
+.header-section {
+  flex-shrink: 0;
+  text-align: center;
+  margin-bottom: 0px;
+  margin-top: -5px;
+
+  /* HEIGHT CONTROL: Adjust header height here */
+  padding-top: 0px; /* Change this value to increase/decrease top space */
+  /* height: 120px; */ /* Uncomment to set fixed header height */
+  /* min-height: 100px; */ /* Uncomment to set minimum header height */
+
+  .logo {
+    width: 120px;
+    height: inherit;
+  }
+  .subtitle {
+    font-size: 0.75rem;
+    color: #333;
+    letter-spacing: 1px;
+    margin-top: -8px;
+  }
+}
+
+.glass-card {
+  flex: 0.5;
+  max-height: 90vh;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.178);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(2px);
+
+
+  border-radius: 0 0 24px 24px;
+
+  padding: 32px 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin: 0;
+}
+
+.welcome-text {
+  font-family: "Albert Sans";
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.line-bottom {
+  width: 330px;
+  height: 0.5px;
+  background: #000000;
+  border: none;
+  margin: 12px auto 0 auto;
+  border-radius: 2px;
+}
+
+.instr-text {
+  font-size: 12px;
+  font-family: "Albert Sans";
+  color: #000000;
+  margin-bottom: 28px;
+  margin-top: -5px;
+  opacity: 0.9;
+}
+
+.input-group {
+  text-align: left;
+  margin-bottom: 16px;
+
+  /* HEIGHT CONTROL: Adjust spacing between input fields */
+  /* margin-bottom: 24px; */ /* Increase for more space between inputs */
+
+  label {
+    font-size: 0.9rem;
+    font-family: "Lusitana", serif;
+    color: #ffffff;
+    margin-left: 5px;
+    font-weight: 500;
+  }
+}
+
+.custom-input {
+  --background: #e8e3ddc9;
+  --border-radius: 14px;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --placeholder-color: #999;
+  --placeholder-opacity: 0.7;
+  --color: #333;
+  width: 98%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 6px;
+
+  /* HEIGHT CONTROL: Change input field height */
+  min-height: 50px; /* Adjust this value (e.g., 40px, 60px) */
+  font-size: 1rem;
+}
+
+.password-wrapper {
+  position: relative;
+  .toggle-icon {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    font-size: 1.3rem;
+    color: #666;
+  }
+}
+
+.terms-checkbox {
+  margin: 12px 0;
+  font-family: "Lusitana", serif;
+  margin-right: -10px;
+
+  /* HEIGHT CONTROL: Adjust checkbox spacing */
+  /* margin: 20px 0; */ /* Increase for more space */
+
+  ion-checkbox {
+    -webkit-margin-start: 2px;
+    --size: 16px;
+    --checkbox-background-checked: #ffffff;
+    --checkbox-background: #ffffff;
+    --checkbox-border-width: 2px;
+    &::part(container) {
+      margin-right: -10px;
+      transform: translateX(0px);
+    }
+    font-size: 0.75rem;
+    color: #ffffff;
+  }
+}
+
+.login-btn {
+  --background: #b1ada4d0;
+  --border-radius: 20px;
+  --color: white;
+
+  /* HEIGHT CONTROL: Change button height and spacing */
+  margin-top: 2px; /* Adjust space above button */
+  height: 52px; /* Adjust button height (e.g., 44px, 60px) */
+  font-weight: bold;
+  font-size: 1.5rem;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.separator {
+  display: flex;
+  align-items: center;
+
+  /* HEIGHT CONTROL: Adjust separator spacing */
+  margin: 10px 0; /* Change top/bottom margin */
+
+  .line {
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.3);
+  }
+  .sep-text {
+    font-size: 0.8rem;
+    padding: 0 12px;
+    color: #fff;
+  }
+}
+
+.social-auth {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+
+  /* HEIGHT CONTROL: Adjust social icons spacing */
+  margin-bottom: 24px; /* Change space below social icons */
+
+  .social-icon {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    cursor: pointer;
+    transition: transform 0.2s;
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+
+  .google {
+    width: 20px;
+    height: 20px;
+  }
+  .facebook {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.login-prompt {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  color: #fff;
+
+  a {
+    font-weight: bold;
+    color: #ffffff;
+    text-decoration: underline;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.signup-prompt {
+  font-size: 0.9rem;
+  color: #fff;
+
+  /* HEIGHT CONTROL: Adjust signup text spacing */
+  /* margin-top: 20px; */ /* Uncomment to add space above */
+
+  a {
+    font-weight: bold;
+    color: #333;
+    text-decoration: underline;
+  }
+}
+
+.footer-section {
+  flex-shrink: 0;
+
+  /* HEIGHT CONTROL: Adjust footer spacing */
+  margin-top: 8px; /* Change space above footer */
+  text-align: center;
+  padding-top: 16px; /* Change internal top padding */
+
+  .luxury-text {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 8px;
+  }
+}
+
+.pagination-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 0px;
+
+  /* HEIGHT CONTROL: Adjust dot size */
+  .dot {
+    width: 6px; /* Change dot width */
+    height: 6px; /* Change dot height */
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+  }
+  .dot.active {
+    background: #fff;
+    width: 16px;
+    border-radius: 10px;
+  }
+}
+
+ion-input.custom-input {
+  --highlight-height: 0;
+}
+
+button,
+.social-icon,
+.forgot-link,
+a {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* HEIGHT CONTROL: Mobile-specific adjustments */
+@media (max-width: 480px) {
+  .glass-card {
+    padding: 28px 16px;
+
+    /* HEIGHT CONTROL: Different glass card height on mobile */
+    /* max-height: 80vh; */ /* Uncomment for mobile height limit */
+  }
+  .welcome-text {
+    font-size: 1.4rem;
+  }
+  .custom-input {
+    min-height: 48px; /* Smaller input height on mobile */
+    font-size: 0.95rem;
+  }
+  .login-btn {
+    height: 48px; /* Smaller button height on mobile */
+    font-size: 1rem;
+  }
+  .login-prompt {
+    font-size: 0.8rem;
+  }
+}

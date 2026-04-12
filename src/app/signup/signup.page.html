@@ -1,13 +1,114 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>signup</ion-title>
-  </ion-toolbar>
-</ion-header>
-
+<link
+  href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@100..900&display=swap"
+  rel="stylesheet"
+/>
+<link
+  href="https://fonts.googleapis.com/css2?family=Lusitana:wght@400;700&display=swap"
+  rel="stylesheet"
+/>
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">signup</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="login-wrapper">
+    <div class="glass-card">
+      <div class="header-section">
+        <img src="assets/aromic logo.png" class="logo" alt="Aromic Logo" />
+        <p class="subtitle">Architecture & Interior Design</p>
+        <hr class="line-bottom" />
+      </div>
+      <h2 class="welcome-text">Get Started!</h2>
+      <p class="instr-text">Enter your details to create an account</p>
+
+      <div class="form-container">
+        <div class="input-group">
+          <label>Email/ Phone Number:</label>
+          <ion-input
+            type="email"
+            placeholder="Lilila110605@gmail.com"
+            class="custom-input"
+          ></ion-input>
+        </div>
+
+        <div class="input-group">
+          <label>Username:</label>
+          <ion-input
+            type="text"
+            placeholder="Kayieee123"
+            class="custom-input"
+          ></ion-input>
+        </div>
+
+        <div class="input-group">
+          <label>Create Password:</label>
+          <div class="password-wrapper">
+            <ion-input
+              [type]="passwordType"
+              placeholder="••••••••••••"
+              class="custom-input"
+            ></ion-input>
+            <ion-icon
+              [name]="passwordIcon"
+              (click)="togglePassword()"
+              class="toggle-icon"
+            ></ion-icon>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Confirm Password:</label>
+          <div class="password-wrapper">
+            <ion-input
+              [type]="confirmPasswordType"
+              placeholder="••••••••••••"
+              class="custom-input"
+            ></ion-input>
+            <ion-icon
+              [name]="confirmPasswordIcon"
+              (click)="toggleConfirmPassword()"
+              class="toggle-icon"
+            ></ion-icon>
+          </div>
+        </div>
+
+        <div class="terms-checkbox">
+          <ion-checkbox labelPlacement="end" justify="start">
+            I accept the terms of use and Privacy Policy
+          </ion-checkbox>
+        </div>
+
+        <ion-button expand="block" class="login-btn">SIGN UP</ion-button>
+
+        <div class="separator">
+          <span class="line"></span>
+          <span class="sep-text">or continue with</span>
+          <span class="line"></span>
+        </div>
+
+        <div class="social-auth">
+          <img
+            src="../../assets/icon/google.png"
+            alt="Google"
+            class="social-icon google"
+          />
+          <img
+            src="../../assets/icon/facebook.png"
+            alt="Facebook"
+            class="social-icon facebook"
+          />
+        </div>
+
+        <!-- NEW: Already have an account? Login link -->
+        <div class="login-prompt">
+          Already have an account? <a routerLink="/login">Login</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-section">
+      <div class="pagination-dots">
+        <span class="dot"></span>
+        <span class="dot active"></span>
+        <span class="dot"></span>
+      </div>
+      <p class="luxury-text">Crafting Spaces. Defining Luxury.</p>
+    </div>
+  </div>
 </ion-content>
