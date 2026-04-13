@@ -214,9 +214,9 @@
 
 .login-prompt {
   text-align: center;
-  margin-top: 10px;
+  margin-top: -10px;
   margin-bottom: 8px;
-  font-size: 0.9rem;
+  font-size: 10px;
   color: #fff;
 
   a {
@@ -297,18 +297,17 @@ a {
   .glass-card {
     padding: 28px 16px;
 
-    /* HEIGHT CONTROL: Different glass card height on mobile */
-    /* max-height: 80vh; */ /* Uncomment for mobile height limit */
+    
   }
   .welcome-text {
     font-size: 1.4rem;
   }
   .custom-input {
-    min-height: 48px; /* Smaller input height on mobile */
+    min-height: 48px; 
     font-size: 0.95rem;
   }
   .login-btn {
-    height: 48px; /* Smaller button height on mobile */
+    height: 48px;
     font-size: 1rem;
   }
   .login-prompt {
