@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
-/* Keep only the components actually used in your HTML */
+import { Router, RouterLink } from '@angular/router'; // Added Router
 import {
   IonContent,
   IonIcon,
@@ -36,7 +35,6 @@ import {
   imports: [
     CommonModule,
     RouterLink,
-    /* Cleaned up list to remove warnings */
     IonContent,
     IonIcon,
     IonAvatar,
@@ -46,7 +44,13 @@ import {
   ],
 })
 export class HomePage {
-  constructor() {
+  // Toast properties
+  showToast: boolean = false;
+  toastMessage: string = '';
+  toastIcon: string = 'checkmark-circle-outline';
+
+  constructor(private router: Router) {
+    // Inject Router here
     addIcons({
       menuOutline,
       addOutline,
@@ -63,5 +67,21 @@ export class HomePage {
       folderOutline,
       personOutline,
     });
+  }
+
+  navigateToPhotoDesign() {
+    this.showToastMessage('Opening Photo Design', 'aperture-outline');
+    this.router.navigate(['/photo-design']);
+  }
+
+  // Helper method for the toast feedback
+  private showToastMessage(message: string, icon: string) {
+    this.toastMessage = message;
+    this.toastIcon = icon;
+    this.showToast = true;
+
+    setTimeout(() => {
+      this.showToast = false;
+    }, 2000);
   }
 }
