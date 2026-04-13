@@ -8,26 +8,35 @@ export const routes: Routes = [
   },
   {
     path: 'splash',
-    loadComponent: () => import('./splash/splash.page').then(m => m.SplashPage)
+    loadComponent: () =>
+      import('./splash/splash.page').then((m) => m.SplashPage),
   },
   {
     path: 'login',
-    loadComponent: () => import('./login/login.page').then(m => m.LoginPage)
+    loadComponent: () => import('./login/login.page').then((m) => m.LoginPage),
   },
   {
     path: 'signup',
-    loadComponent: () => import('./signup/signup.page').then(m => m.SignupPage)
+    loadComponent: () =>
+      import('./signup/signup.page').then((m) => m.SignupPage),
   },
   {
     path: 'projects',
-    loadComponent: () => import('./projects/projects.page').then( m => m.ProjectsPage)
+    loadComponent: () =>
+      import('./projects/projects.page').then((m) => m.ProjectsPage),
   },
   {
     path: 'library',
-    loadComponent: () => import('./library/library.page').then( m => m.LibraryPage)
+    loadComponent: () =>
+      import('./library/library.page').then((m) => m.LibraryPage),
   },
   {
     path: 'profile',
-    loadComponent: () => import('./profile/profile.page').then( m => m.ProfilePage)
+    loadComponent: () =>
+      import('./profile/profile.page').then((m) => m.ProfilePage),
+  },
+  {
+    path: 'home', // This is where Login will go
+    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
   },
 ];

@@ -1,20 +1,123 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" class="ion-no-border">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <img src="assets/icon/favicon.png" class="header-logo" slot="start" />
+    <ion-buttons slot="end">
+      <ion-icon name="information-circle-outline" slot="icon-only"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <img src="https://via.placeholder.com/800x1200" class="background-image" />
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div class="main-container">
+    <div class="profile-greeting glass-panel">
+      <ion-avatar>
+        <img src="https://via.placeholder.com/100" alt="Profile" />
+      </ion-avatar>
+      <div class="greeting-text">
+        <h2>Hello, Kylla Jen!</h2>
+        <p>
+          Discover beauty in architecture and interior design that elevate your
+          spaces.
+        </p>
+        <ion-button size="small" fill="outline" class="projects-btn"
+          >ACTIVE PROJECTS</ion-button
+        >
+      </div>
+      <div class="add-project-icon">
+        <ion-icon name="add-circle"></ion-icon>
+      </div>
+    </div>
+
+    <div class="categories-container glass-panel">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <ion-card class="category-card">
+              <img src="https://via.placeholder.com/300x400" />
+              <div class="card-title">
+                <ion-icon name="home-outline"></ion-icon> Architecture
+              </div>
+            </ion-card>
+          </ion-col>
+          <ion-col size="6">
+            <ion-card class="category-card">
+              <img src="https://via.placeholder.com/300x400" />
+              <div class="card-title">
+                <ion-icon name="layers-outline"></ion-icon> Materials
+              </div>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">
+            <ion-card class="category-card">
+              <img src="https://via.placeholder.com/300x400" />
+              <div class="card-title">
+                <ion-icon name="aperture-outline"></ion-icon> Photo Design
+              </div>
+            </ion-card>
+          </ion-col>
+          <ion-col size="6">
+            <ion-card class="category-card">
+              <img src="https://via.placeholder.com/300x400" />
+              <div class="card-title">
+                <ion-icon name="grid-outline"></ion-icon> Projects
+              </div>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <div class="recent-projects">
+        <h3>Recent Projects</h3>
+        <ion-item lines="none" class="project-item">
+          <ion-thumbnail slot="start">
+            <img src="https://via.placeholder.com/150" />
+          </ion-thumbnail>
+          <ion-label>
+            <h2>Modern Villa</h2>
+            <p>3 rooms • 1 floor</p>
+            <div class="progress-dots">
+              <span class="dot active"></span>
+              <span class="dot"></span>
+            </div>
+          </ion-label>
+          <ion-button slot="end" size="small" class="continue-btn"
+            >Continue -></ion-button
+          >
+        </ion-item>
+      </div>
+    </div>
   </div>
 </ion-content>
+
+<ion-footer class="ion-no-border custom-footer">
+  <div class="custom-tab-bar glass-panel">
+    <div class="tab-item active">
+      <ion-icon name="home-outline"></ion-icon>
+      <span>HOME</span>
+    </div>
+    <div class="tab-item">
+      <ion-icon name="grid-outline"></ion-icon>
+      <span>PROJECTS</span>
+    </div>
+
+    <div class="center-action-btn">
+      <ion-icon name="sparkles"></ion-icon>
+    </div>
+
+    <div class="tab-item">
+      <ion-icon name="folder-outline"></ion-icon>
+      <span>LIBRARY</span>
+    </div>
+    <div class="tab-item">
+      <ion-icon name="person-outline"></ion-icon>
+      <span>PROFILE</span>
+    </div>
+  </div>
+</ion-footer>

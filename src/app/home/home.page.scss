@@ -1,27 +1,129 @@
-#container {
-  text-align: center;
+/* src/app/home/home.page.scss */
 
-  position: absolute;
+// Background setup
+.main-bg {
+  position: fixed;
+  top: 0;
   left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+// User Profile Glass Card
+.user-glass-card {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  margin: 20px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .profile-section {
+    display: flex;
+    align-items: center;
+    ion-avatar {
+      width: 55px;
+      height: 55px;
+      border: 2px solid white;
+    }
+    .text-area {
+      margin-left: 12px;
+      h2 {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #fff;
+        margin: 0;
+      }
+      p {
+        font-size: 0.7rem;
+        color: #eee;
+        margin: 0;
+      }
+    }
+  }
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
+// Category Cards
+.category-card {
+  border-radius: 25px;
+  overflow: hidden;
+  height: 180px;
+  position: relative;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 
-  color: #8c8c8c;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
-  margin: 0;
+  .label-overlay {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    color: white;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
 }
 
-#container a {
-  text-decoration: none;
+// The Floating Bottom Nav
+ion-footer {
+  background: transparent;
+  padding: 0 20px 30px 20px;
+}
+
+.floating-nav {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 40px;
+  height: 70px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #666;
+    &.active {
+      color: #000;
+      font-weight: bold;
+    }
+    ion-icon {
+      font-size: 24px;
+    }
+    span {
+      font-size: 0.6rem;
+      margin-top: 4px;
+    }
+  }
+
+  .center-fab {
+    background: white;
+    width: 55px;
+    height: 55px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -35px; // Lifts it up
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    ion-icon {
+      font-size: 28px;
+      color: #000;
+    }
+  }
 }
