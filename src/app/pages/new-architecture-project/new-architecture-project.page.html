@@ -16,7 +16,9 @@
       <div class="card-image-header">
         <img src="../../../assets/BackgroundImage3.png" alt="preview" />
         <div class="glass-gradient-overlay"></div>
-        <span class="room-counter">Room 1 of 25</span>
+        <span class="room-counter"
+          >Room {{ currentRoom }} of {{ totalRooms }}</span
+        >
       </div>
 
       <div class="form-body">
@@ -24,7 +26,10 @@
           <label>Project Name:</label>
           <div class="custom-input-box">
             <ion-icon name="home-outline"></ion-icon>
-            <ion-input placeholder="e.g., Living Room"></ion-input>
+            <ion-input
+              [(ngModel)]="projectData.projectName"
+              placeholder="e.g., Living Room"
+            ></ion-input>
           </div>
         </div>
 
@@ -34,7 +39,11 @@
               <label>Width (m):</label>
               <div class="custom-input-box">
                 <ion-icon name="pencil-outline"></ion-icon>
-                <ion-input type="number" placeholder="0.0"></ion-input>
+                <ion-input
+                  [(ngModel)]="projectData.width"
+                  type="number"
+                  placeholder="0.0"
+                ></ion-input>
               </div>
             </div>
           </ion-col>
@@ -43,7 +52,11 @@
               <label>Length (m):</label>
               <div class="custom-input-box">
                 <ion-icon name="pencil-outline"></ion-icon>
-                <ion-input type="number" placeholder="0.0"></ion-input>
+                <ion-input
+                  [(ngModel)]="projectData.length"
+                  type="number"
+                  placeholder="0.0"
+                ></ion-input>
               </div>
             </div>
           </ion-col>
@@ -53,9 +66,14 @@
           <label>Floor Number:</label>
           <div class="custom-input-box">
             <ion-icon name="layers-outline"></ion-icon>
-            <ion-select interface="popover" value="1">
+            <ion-select
+              [(ngModel)]="projectData.floor"
+              interface="popover"
+              value="1"
+            >
               <ion-select-option value="1">Floor 1</ion-select-option>
               <ion-select-option value="2">Floor 2</ion-select-option>
+              <ion-select-option value="3">Floor 3</ion-select-option>
             </ion-select>
           </div>
         </div>
@@ -65,6 +83,7 @@
           <div class="custom-input-box textarea-box">
             <ion-icon name="reader-outline"></ion-icon>
             <ion-textarea
+              [(ngModel)]="projectData.notes"
               rows="3"
               placeholder="Additional Details..."
             ></ion-textarea>
@@ -74,14 +93,22 @@
     </div>
 
     <div class="action-footer">
-      <button class="btn-primary-dark">
+      <button class="btn-primary-dark" (click)="addAnotherRoom()">
         <ion-icon name="business-outline"></ion-icon>
         Add another room
       </button>
-      <button class="btn-primary-light">
+      <button class="btn-primary-light" (click)="generate3DHouse()">
         <ion-icon name="cube-outline"></ion-icon>
         Generate 3D house
       </button>
+    </div>
+  </div>
+
+  <!-- Toast notification container -->
+  <div class="toast-container" [class.show]="showToast">
+    <div class="toast-message">
+      <ion-icon name="checkmark-circle-outline"></ion-icon>
+      <span>{{ toastMessage }}</span>
     </div>
   </div>
 </ion-content>

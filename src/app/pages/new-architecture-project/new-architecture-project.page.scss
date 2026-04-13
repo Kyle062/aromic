@@ -1,3 +1,15 @@
+:host {
+  --ion-safe-area-left: 0;
+  --ion-safe-area-right: 0;
+}
+
+ion-content {
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0;
+  --padding-bottom: 0;
+}
+
 .fixed-background {
   position: fixed;
   top: 0;
@@ -5,6 +17,7 @@
   width: 100%;
   height: 100%;
   z-index: -1;
+
   img {
     width: 100%;
     height: 100%;
@@ -12,20 +25,40 @@
   }
 }
 
+.main-overlay {
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
 .top-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 50px 10px 10px;
+  position: relative;
+
   .back-icon {
     --color: #000;
-    font-size: 24px;
+    --padding-start: 8px;
+    --padding-end: 8px;
+    height: 36px;
+    width: 36px;
+    font-size: 20px;
+
+    ion-icon {
+      font-size: 20px;
+    }
   }
+
   .menu-icon {
-    font-size: 28px;
+    font-size: 24px;
     color: #000;
     margin-right: 10px;
   }
+
   .page-title {
     flex: 1;
     text-align: center;
@@ -50,11 +83,13 @@
   .card-image-header {
     position: relative;
     height: 180px;
+
     img {
       width: 100%;
-      height: 100%;
+      height: 400%;
       object-fit: cover;
     }
+
     .glass-gradient-overlay {
       position: absolute;
       bottom: 0;
@@ -67,6 +102,7 @@
       );
       backdrop-filter: blur(5px);
     }
+
     .room-counter {
       position: absolute;
       top: 15px;
@@ -77,14 +113,17 @@
       border-radius: 12px;
       font-size: 0.65rem;
       font-weight: 700;
+      backdrop-filter: blur(5px);
     }
   }
 }
 
 .form-body {
   padding: 20px;
+
   .input-group {
     margin-bottom: 15px;
+
     label {
       display: block;
       color: #000;
@@ -93,6 +132,7 @@
       margin-bottom: 8px;
       margin-left: 5px;
     }
+
     .custom-input-box {
       background: #fff;
       border-radius: 15px;
@@ -101,11 +141,13 @@
       padding: 0 15px;
       height: 48px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+
       ion-icon {
         color: #444;
         font-size: 18px;
         margin-right: 12px;
       }
+
       ion-input,
       ion-select,
       ion-textarea {
@@ -115,6 +157,7 @@
         color: #000;
       }
     }
+
     .textarea-box {
       height: auto;
       padding-top: 12px;
@@ -123,10 +166,11 @@
 }
 
 .action-footer {
-  padding: 10px 20px 110px;
+  padding: 10px 20px 30px;
   display: flex;
   flex-direction: column;
   gap: 12px;
+
   button {
     height: 58px;
     border-radius: 35px;
@@ -138,16 +182,82 @@
     gap: 10px;
     font-size: 0.95rem;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+
     ion-icon {
       font-size: 22px;
     }
+
+    &:active {
+      transform: scale(0.98);
+    }
   }
+
   .btn-primary-dark {
     background: #000;
     color: #fff;
+
+    &:hover {
+      background: #222;
+    }
   }
+
   .btn-primary-light {
     background: #fff;
     color: #000;
+
+    &:hover {
+      background: #f5f5f5;
+    }
+  }
+}
+
+/* Toast Notification Styles */
+.toast-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  &.show {
+    opacity: 1;
+    pointer-events: none;
+  }
+
+  .toast-message {
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 16px 24px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+
+    ion-icon {
+      font-size: 24px;
+      color: #4caf50;
+    }
+
+    span {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+  }
+
+  &.show .toast-message {
+    transform: translateY(0);
   }
 }
