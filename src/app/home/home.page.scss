@@ -1,61 +1,153 @@
-/* src/app/home/home.page.scss */
-
-// Background setup
-.main-bg {
+/* 1. Background Layer */
+.fixed-background {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
   z-index: -1;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
-// User Profile Glass Card
-.user-glass-card {
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border-radius: 30px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  margin: 20px;
-  padding: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.main-overlay {
+  padding: 20px 0 0 0;
+  overflow-x: hidden;
+  width: 100%;
+}
 
-  .profile-section {
+/* 3. Top Header - Add horizontal padding back */
+.top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px; 
+  margin-top: -10px;
+
+  .logo-icon {
+    width: 35px;
+  }
+
+  .menu-icon {
+    font-size: 30px;
+    color: white;
+  }
+}
+
+/* 4. Glassmorphism Header - Add margins */
+.glass-header {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border-radius: 40px;
+  padding: 20px 20px;
+  position: relative;
+  margin: 15px 20px 0 20px; /* Added left/right margins */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  overflow: visible;
+
+  .info-icon-small {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: white;
+    font-size: 14px;
+    opacity: 0.8;
+  }
+
+  .profile-info {
     display: flex;
     align-items: center;
+
     ion-avatar {
-      width: 55px;
-      height: 55px;
-      border: 2px solid white;
+      width: 70px;
+      height: 70px;
+      margin-right: 15px;
     }
-    .text-area {
-      margin-left: 12px;
-      h2 {
-        font-size: 1.2rem;
-        font-weight: 700;
-        color: #fff;
-        margin: 0;
-      }
-      p {
-        font-size: 0.7rem;
-        color: #eee;
-        margin: 0;
-      }
+
+    h2 {
+      color: white;
+      font-weight: 700;
+      margin: 0;
+      font-size: 1.4rem;
+    }
+
+    p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.75rem;
+      margin: 8px 0;
+      line-height: 1.2;
     }
   }
 }
 
-// Category Cards
-.category-card {
-  border-radius: 25px;
-  overflow: hidden;
-  height: 180px;
+/* 5. Pill Button */
+.pill-button {
+  background: white;
+  color: #333;
+  border: none;
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 0.6rem;
+  font-weight: 800;
+  margin-top: 5px;
+}
+
+/* 6. Add Button Container */
+.add-btn-container {
+  position: absolute;
+  right: -15px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  .add-pill {
+    background: white;
+    width: 60px;
+    height: 35px;
+    border-radius: 20px 0 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+    ion-icon {
+      font-size: 22px;
+      color: black;
+      font-weight: bold;
+    }
+  }
+}
+
+/* 7. Main Content Container - Full width fix */
+.glass-2 {
+  background: #f3f3f2;
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border-radius: 40px 40px 0 0;
+  padding: 15px 20px;
   position: relative;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  margin-top: 15px;
+  margin-bottom: 0;
+  width: 100%; /* Full width */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+  box-sizing: border-box; /* Ensure padding doesn't add to width */
+}
+
+/* 8. Category Grid */
+.cat-card {
+  position: relative;
+  height: 200px;
+  border-radius: 40px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
 
   img {
     width: 100%;
@@ -63,67 +155,106 @@
     object-fit: cover;
   }
 
-  .label-overlay {
+  .cat-label {
     position: absolute;
-    bottom: 15px;
-    left: 15px;
+    bottom: 10px;
+    left: 10px;
+    width: calc(100% - 20px);
+    height: 40px;
+    padding: 0 15px;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(15px);
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
     color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+
+    ion-icon {
+      margin-right: 8px;
+      font-size: 18px;
+    }
+
+    .end {
+      margin-left: auto;
+      font-size: 20px;
+    }
+  }
+}
+
+/* 9. Recent Projects */
+.recent-title {
+  color: black;
+  font-weight: 700;
+  margin: 25px 5px 15px;
+}
+
+.recent-card {
+  background: #fff9f2;
+  border-radius: 35px;
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+
+  .thumb {
+    width: 75px;
+    height: 65px;
+    border-radius: 22px;
+    object-fit: cover;
+  }
+
+  .details {
+    margin-left: 15px;
+
+    h4 {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    p {
+      margin: 2px 0;
+      font-size: 0.7rem;
+      color: #888;
+    }
+
+    .status-bar {
+      display: flex;
+      gap: 4px;
+      margin-top: 6px;
+
+      .segment {
+        height: 3px;
+        width: 25px;
+        background: #ddd;
+        border-radius: 10px;
+
+        &.active {
+          background: #000;
+          width: 35px;
+        }
+      }
+    }
+  }
+
+  .continue-btn {
+    margin-left: auto;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 18px;
+    padding: 8px 16px;
+    font-size: 0.7rem;
     font-weight: 600;
     display: flex;
     align-items: center;
-    gap: 5px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  }
-}
 
-// The Floating Bottom Nav
-ion-footer {
-  background: transparent;
-  padding: 0 20px 30px 20px;
-}
-
-.floating-nav {
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-radius: 40px;
-  height: 70px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-
-  .nav-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #666;
-    &.active {
-      color: #000;
-      font-weight: bold;
-    }
-    ion-icon {
-      font-size: 24px;
-    }
     span {
-      font-size: 0.6rem;
-      margin-top: 4px;
-    }
-  }
-
-  .center-fab {
-    background: white;
-    width: 55px;
-    height: 55px;
-    border-radius: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: -35px; // Lifts it up
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    ion-icon {
-      font-size: 28px;
-      color: #000;
+      margin-left: 5px;
+      font-weight: 300;
     }
   }
 }

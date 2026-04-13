@@ -29,7 +29,7 @@ import {
   sparkles,
   layersOutline,
   apertureOutline,
-  arrowForwardOutline, menuOutline } from 'ionicons/icons';
+  arrowForwardOutline, menuOutline, arrowForwardCircleOutline, addOutline, informationOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-home',
@@ -58,6 +58,6 @@ import {
 })
 export class HomePage {
   constructor() {
-    addIcons({menuOutline,informationCircleOutline,addCircle,homeOutline,layersOutline,apertureOutline,gridOutline,arrowForwardOutline,sparkles,folderOutline,personOutline,});
+    addIcons({menuOutline,addOutline,informationOutline,homeOutline,arrowForwardCircleOutline,layersOutline,apertureOutline,gridOutline,informationCircleOutline,addCircle,arrowForwardOutline,sparkles,folderOutline,personOutline,});
   }
 }

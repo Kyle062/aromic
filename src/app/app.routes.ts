@@ -21,22 +21,38 @@ export const routes: Routes = [
       import('./signup/signup.page').then((m) => m.SignupPage),
   },
   {
-    path: 'projects',
-    loadComponent: () =>
-      import('./projects/projects.page').then((m) => m.ProjectsPage),
+    // This is the parent route for your main app content
+    path: '',
+    loadComponent: () => import('./tabs/tabs.page').then((m) => m.TabsPage),
+    children: [
+      {
+        path: 'home',
+        loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
+      },
+      {
+        path: 'projects',
+        loadComponent: () =>
+          import('./projects/projects.page').then((m) => m.ProjectsPage),
+      },
+      {
+        path: 'library',
+        loadComponent: () =>
+          import('./library/library.page').then((m) => m.LibraryPage),
+      },
+      {
+        path: 'profile',
+        loadComponent: () =>
+          import('./profile/profile.page').then((m) => m.ProfilePage),
+      },
+      {
+        path: '',
+        redirectTo: '/home',
+        pathMatch: 'full',
+      },
+    ],
   },
   {
-    path: 'library',
-    loadComponent: () =>
-      import('./library/library.page').then((m) => m.LibraryPage),
-  },
-  {
-    path: 'profile',
-    loadComponent: () =>
-      import('./profile/profile.page').then((m) => m.ProfilePage),
-  },
-  {
-    path: 'home', // This is where Login will go
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
+    path: 'tabs',
+    loadComponent: () => import('./tabs/tabs.page').then( m => m.TabsPage)
   },
 ];

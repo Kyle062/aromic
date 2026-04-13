@@ -1,123 +1,111 @@
-<ion-header [translucent]="true" class="ion-no-border">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <img src="assets/icon/favicon.png" class="header-logo" slot="start" />
-    <ion-buttons slot="end">
-      <ion-icon name="information-circle-outline" slot="icon-only"></ion-icon>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true"  class="ion-no-padding">
+  <div class="fixed-background">
+    <img src="../../assets/aromic background.png" alt="background" />
+  </div>
 
-<ion-content [fullscreen]="true">
-  <img src="https://via.placeholder.com/800x1200" class="background-image" />
+  <div class="main-overlay">
+    <div class="top-header">
+      <img src="../../assets/homepageImages/logo.png" class="logo-icon" />
+      <ion-icon name="menu-outline" class="menu-icon"></ion-icon>
+    </div>
 
-  <div class="main-container">
-    <div class="profile-greeting glass-panel">
-      <ion-avatar>
-        <img src="https://via.placeholder.com/100" alt="Profile" />
-      </ion-avatar>
-      <div class="greeting-text">
-        <h2>Hello, Kylla Jen!</h2>
-        <p>
-          Discover beauty in architecture and interior design that elevate your
-          spaces.
-        </p>
-        <ion-button size="small" fill="outline" class="projects-btn"
-          >ACTIVE PROJECTS</ion-button
-        >
+    <div class="glass-header">
+      <ion-icon name="information-outline" class="info-icon-small"></ion-icon>
+
+      <div class="profile-info">
+        <ion-avatar>
+          <img src="../../assets/homepageImages/profile.png" alt="Profile" />
+        </ion-avatar>
+        <div class="text-group">
+          <h2>Hello, Kylla Jen!</h2>
+          <p>
+            Explore Aromic Architecture and Interior Design to elevate your home
+            designs.
+          </p>
+          <button class="pill-button">ACTIVE PROJECTS</button>
+        </div>
       </div>
-      <div class="add-project-icon">
-        <ion-icon name="add-circle"></ion-icon>
+
+      <div class="add-btn-container">
+        <div class="add-pill">
+          <ion-icon name="add-outline"></ion-icon>
+        </div>
       </div>
     </div>
 
-    <div class="categories-container glass-panel">
-      <ion-grid>
+    <div class="glass-2">
+      <ion-grid class="ion-no-padding">
         <ion-row>
           <ion-col size="6">
-            <ion-card class="category-card">
-              <img src="https://via.placeholder.com/300x400" />
-              <div class="card-title">
-                <ion-icon name="home-outline"></ion-icon> Architecture
+            <div class="cat-card">
+              <img src="../../assets/homepageImages/architecture1.png" />
+              <div class="cat-label">
+                <ion-icon name="home-outline"></ion-icon>
+                <span>Architecture</span>
+                <ion-icon
+                  name="arrow-forward-circle-outline"
+                  class="end"
+                ></ion-icon>
               </div>
-            </ion-card>
+            </div>
           </ion-col>
           <ion-col size="6">
-            <ion-card class="category-card">
-              <img src="https://via.placeholder.com/300x400" />
-              <div class="card-title">
-                <ion-icon name="layers-outline"></ion-icon> Materials
+            <div class="cat-card">
+              <img src="../../assets/homepageImages/architecture2.png" />
+              <div class="cat-label">
+                <ion-icon name="layers-outline"></ion-icon>
+                <span>Materials</span>
+                <ion-icon
+                  name="arrow-forward-circle-outline"
+                  class="end"
+                ></ion-icon>
               </div>
-            </ion-card>
+            </div>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col size="6">
-            <ion-card class="category-card">
-              <img src="https://via.placeholder.com/300x400" />
-              <div class="card-title">
-                <ion-icon name="aperture-outline"></ion-icon> Photo Design
+            <div class="cat-card">
+              <img src="../../assets/homepageImages/architecture3.png" />
+              <div class="cat-label">
+                <ion-icon name="aperture-outline"></ion-icon>
+                <span>Photo Design</span>
+                <ion-icon
+                  name="arrow-forward-circle-outline"
+                  class="end"
+                ></ion-icon>
               </div>
-            </ion-card>
+            </div>
           </ion-col>
           <ion-col size="6">
-            <ion-card class="category-card">
-              <img src="https://via.placeholder.com/300x400" />
-              <div class="card-title">
-                <ion-icon name="grid-outline"></ion-icon> Projects
+            <div class="cat-card">
+              <img src="../../assets/homepageImages/architecture4.png" />
+              <div class="cat-label">
+                <ion-icon name="grid-outline"></ion-icon>
+                <span>Projects</span>
+                <ion-icon
+                  name="arrow-forward-circle-outline"
+                  class="end"
+                ></ion-icon>
               </div>
-            </ion-card>
+            </div>
           </ion-col>
         </ion-row>
       </ion-grid>
 
-      <div class="recent-projects">
-        <h3>Recent Projects</h3>
-        <ion-item lines="none" class="project-item">
-          <ion-thumbnail slot="start">
-            <img src="https://via.placeholder.com/150" />
-          </ion-thumbnail>
-          <ion-label>
-            <h2>Modern Villa</h2>
-            <p>3 rooms • 1 floor</p>
-            <div class="progress-dots">
-              <span class="dot active"></span>
-              <span class="dot"></span>
-            </div>
-          </ion-label>
-          <ion-button slot="end" size="small" class="continue-btn"
-            >Continue -></ion-button
-          >
-        </ion-item>
+      <h3 class="recent-title">Recent Projects</h3>
+      <div class="recent-card">
+        <img src="../../assets/homepageImages/project1.png" class="thumb" />
+        <div class="details">
+          <h4>Modern Villa</h4>
+          <p>3 rooms • 1 floor</p>
+          <div class="status-bar">
+            <span class="segment active"></span>
+            <span class="segment"></span>
+          </div>
+        </div>
+        <button class="continue-btn">Continue <span>&gt;</span></button>
       </div>
     </div>
   </div>
 </ion-content>
-
-<ion-footer class="ion-no-border custom-footer">
-  <div class="custom-tab-bar glass-panel">
-    <div class="tab-item active">
-      <ion-icon name="home-outline"></ion-icon>
-      <span>HOME</span>
-    </div>
-    <div class="tab-item">
-      <ion-icon name="grid-outline"></ion-icon>
-      <span>PROJECTS</span>
-    </div>
-
-    <div class="center-action-btn">
-      <ion-icon name="sparkles"></ion-icon>
-    </div>
-
-    <div class="tab-item">
-      <ion-icon name="folder-outline"></ion-icon>
-      <span>LIBRARY</span>
-    </div>
-    <div class="tab-item">
-      <ion-icon name="person-outline"></ion-icon>
-      <span>PROFILE</span>
-    </div>
-  </div>
-</ion-footer>
