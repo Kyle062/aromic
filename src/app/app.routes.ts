@@ -55,4 +55,8 @@ export const routes: Routes = [
     path: 'tabs',
     loadComponent: () => import('./tabs/tabs.page').then( m => m.TabsPage)
   },
+  {
+    path: 'new-architecture-project',
+    loadComponent: () => import('./pages/new-architecture-project/new-architecture-project.page').then( m => m.NewArchitectureProjectPage)
+  },
 ];

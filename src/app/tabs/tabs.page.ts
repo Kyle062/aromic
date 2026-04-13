@@ -12,8 +12,7 @@ import {
   gridOutline,
   sparkles,
   folderOutline,
-  personOutline,
-} from 'ionicons/icons';
+  personOutline, imageOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-tabs',
@@ -24,12 +23,6 @@ import {
 })
 export class TabsPage {
   constructor() {
-    addIcons({
-      homeOutline,
-      gridOutline,
-      sparkles,
-      folderOutline,
-      personOutline,
-    });
+    addIcons({imageOutline,homeOutline,gridOutline,folderOutline,personOutline,sparkles,});
   }
 }

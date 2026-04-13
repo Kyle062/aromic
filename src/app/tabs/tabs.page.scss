@@ -1,68 +1,83 @@
-/* tabs.page.scss */
-.custom-nav-bar {
+.tabs-container {
+  position: fixed; // Changed from absolute to fixed
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 0; // Removed side padding to let it touch the edges
+  background: transparent;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.custom-tab-bar {
   --background: transparent;
   background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
-  border-radius: 40px;
-  margin: 0 20px 25px 20px;
-  height: 80px;
+
+  /* Adjusted border-radius: only top corners rounded to stick to bottom */
+  border-radius: 40px 40px 0 0;
+
+  height: 85px; // Slightly taller for safe-area-inset
+  padding-bottom: env(safe-area-inset-bottom); // Support for iPhone notches
+  margin-bottom: 0; // Force-removed the margin
+
   border: 1px solid rgba(255, 255, 255, 0.3);
-  display: flex;
-  justify-content: space-around;
-  position: absolute;
-  bottom: 0;
-  width: calc(100% - 40px);
+  border-bottom: none; // Remove bottom border so it sits flush
+  pointer-events: auto;
 
-  /* The Curved Cutout Effect */
-  &::before {
-    content: "";
-    position: absolute;
-    top: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90px;
-    height: 45px;
-    background: transparent;
-    border-radius: 0 0 50px 50px;
-    box-shadow: 0 20px 0 0 rgba(255, 255, 255, 0.4); // This creates the "scoop" look
-    backdrop-filter: blur(25px);
-  }
+  /* The "Dip" Curve Mask */
+  clip-path: polygon(
+    0% 0%,
+    35% 0%,
+    40% 5%,
+    45% 20%,
+    50% 25%,
+    55% 20%,
+    60% 5%,
+    65% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%
+  );
 }
 
-ion-tab-button {
-  --color: #fff;
-  --color-selected: #000;
-
-  // The white circle for the active tab
-  &.tab-selected ion-icon {
-    background: white;
-    color: black;
-    padding: 12px;
-    border-radius: 50%;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-
-  ion-label {
-    font-size: 9px;
-    font-weight: 700;
-    margin-top: 5px;
-    text-transform: uppercase;
-  }
-}
-
-.center-fab-container {
+/* Ensure the Floating Button moves down with the bar */
+.fab-main {
   position: absolute;
   top: -30px;
-  left: 50%;
+  left: 51%;
   transform: translateX(-50%);
-  z-index: 10;
+  z-index: 20;
+  pointer-events: auto;
 
-  .center-fab {
+  .fab-circle {
+    width: 65px;
+    height: 65px;
     background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     ion-icon {
-      font-size: 35px;
+      font-size: 32px;
+      color: #000;
+    }
+  }
+}
+
+/* Tab Buttons stay centered */
+ion-tab-button {
+  --color: #ffffff;
+  --color-selected: #000000;
+  background: transparent;
+
+  &.tab-selected {
+    ion-icon {
+      background: white;
       color: black;
+      padding: 10px;
+      border-radius: 50%;
     }
   }
 }
