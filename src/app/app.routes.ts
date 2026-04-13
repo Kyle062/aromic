@@ -62,5 +62,9 @@ export const routes: Routes = [
   {
     path: 'materials-library',
     loadComponent: () => import('./pages/materials-library/materials-library.page').then( m => m.MaterialsLibraryPage)
+  },  {
+    path: 'photo-design',
+    loadComponent: () => import('./pages/photo-design/photo-design.page').then( m => m.PhotoDesignPage)
   },
+
 ];

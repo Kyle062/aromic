@@ -12,46 +12,122 @@
         class="back-icon"
       ></ion-back-button>
       <h2 class="page-title">Materials Library</h2>
-      <ion-icon name="menu-outline" class="menu-icon"></ion-icon>
+      <ion-icon
+        name="menu-outline"
+        class="menu-icon"
+        (click)="openMenu()"
+      ></ion-icon>
     </div>
 
-    <div class="search-section">
-      <div class="search-bar">
-        <ion-icon name="search-outline"></ion-icon>
-        <ion-input placeholder="Find Materials..."></ion-input>
+    <div class="glass-2">
+      <div class="search-section">
+        <div class="search-bar">
+          <ion-icon name="search-outline"></ion-icon>
+          <ion-input
+            [(ngModel)]="searchQuery"
+            placeholder="Find Materials..."
+            (ionInput)="onSearchChange()"
+          ></ion-input>
+          <ion-icon
+            *ngIf="searchQuery"
+            name="close-circle"
+            class="clear-icon"
+            (click)="clearSearch()"
+          ></ion-icon>
+        </div>
+
+        <div class="filter-scroll">
+          <button
+            class="filter-pill"
+            [class.active]="activeFilter === 'all'"
+            (click)="filterMaterials('all')"
+          >
+            All
+          </button>
+          <button
+            class="filter-pill"
+            [class.active]="activeFilter === 'flooring'"
+            (click)="filterMaterials('flooring')"
+          >
+            Flooring
+          </button>
+          <button
+            class="filter-pill"
+            [class.active]="activeFilter === 'walls'"
+            (click)="filterMaterials('walls')"
+          >
+            Walls
+          </button>
+          <button
+            class="filter-pill"
+            [class.active]="activeFilter === 'furniture'"
+            (click)="filterMaterials('furniture')"
+          >
+            Furniture
+          </button>
+          <button
+            class="filter-pill"
+            [class.active]="activeFilter === 'fixtures'"
+            (click)="filterMaterials('fixtures')"
+          >
+            Fixtures
+          </button>
+        </div>
       </div>
 
-      <div class="filter-scroll">
-        <button class="filter-pill active">All</button>
-        <button class="filter-pill">Flooring</button>
-        <button class="filter-pill">Walls</button>
-        <button class="filter-pill">Furniture</button>
-        <button class="filter-pill">Fixtures</button>
-      </div>
-    </div>
-
-    <div class="materials-grid">
-      <ion-grid>
-        <ion-row>
-          <ion-col size="6" *ngFor="let i of [1,2,3,4,5,6]">
-            <div class="material-card">
-              <div class="image-container">
-                <img
-                  src="../../assets/homepageImages/architecture{{(i % 4) + 1}}.png"
-                />
-                <div class="badge-3d">3D</div>
-              </div>
-              <div class="card-info">
-                <div class="text-meta">
-                  <h4>Oak Wood Flooring</h4>
-                  <p>$45.24</p>
+      <div class="materials-grid">
+        <ion-grid>
+          <ion-row>
+            <ion-col
+              size="6"
+              *ngFor="let material of filteredMaterials; let i = index"
+            >
+              <div
+                class="material-card"
+                (click)="viewMaterialDetails(material)"
+              >
+                <div class="image-container">
+                  <img [src]="material.image" [alt]="material.name" />
+                  <div class="badge-3d" *ngIf="material.is3D">3D</div>
+                  <div class="badge-new" *ngIf="material.isNew">NEW</div>
                 </div>
-                <ion-icon name="heart-outline" class="fav-icon"></ion-icon>
+                <div class="card-info">
+                  <div class="text-meta">
+                    <h4>{{ material.name }}</h4>
+                    <p>{{ material.price | currency }}</p>
+                    <div class="rating" *ngIf="material.rating">
+                      <ion-icon name="star"></ion-icon>
+                      <span>{{ material.rating }}</span>
+                    </div>
+                  </div>
+                  <ion-icon
+                    [name]="material.isFavorite ? 'heart' : 'heart-outline'"
+                    class="fav-icon"
+                    [class.liked]="material.isFavorite"
+                    (click)="toggleFavorite(material, $event)"
+                  ></ion-icon>
+                </div>
               </div>
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <div class="no-results" *ngIf="filteredMaterials.length === 0">
+          <ion-icon name="search-outline"></ion-icon>
+          <p>No materials found</p>
+          <button class="reset-btn" (click)="resetFilters()">
+            Reset Filters
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-container" [class.show]="showToast">
+    <div class="toast-message">
+      <ion-icon [name]="toastIcon"></ion-icon>
+      <span>{{ toastMessage }}</span>
     </div>
   </div>
 </ion-content>
