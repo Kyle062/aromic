@@ -1,13 +1,139 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>projects</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="ion-no-padding">
+  <div class="fixed-background">
+    <img src="../../assets/aromic background.png" alt="background" />
+  </div>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">projects</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="main-overlay">
+    <div class="top-header">
+      <ion-back-button
+        defaultHref="/home"
+        text=""
+        icon="arrow-back-outline"
+      ></ion-back-button>
+      <h1 class="page-title">My Projects</h1>
+      <ion-icon
+        name="ellipsis-horizontal"
+        class="more-icon"
+        (click)="openMenuOptions()"
+      ></ion-icon>
+    </div>
+
+    <div class="content-glass">
+      <div class="search-container">
+        <div class="search-bar">
+          <ion-icon name="search-outline"></ion-icon>
+          <input
+            type="text"
+            placeholder="Search Projects..."
+            [(ngModel)]="searchQuery"
+            (input)="filterProjects()"
+          />
+          <ion-icon
+            *ngIf="searchQuery"
+            name="close-circle"
+            class="clear-icon"
+            (click)="clearSearch()"
+          ></ion-icon>
+        </div>
+        <ion-icon
+          name="options-outline"
+          class="filter-icon"
+          (click)="openFilterOptions()"
+        ></ion-icon>
+      </div>
+
+      <div class="project-stats" *ngIf="!searchQuery">
+        <div class="stat-item">
+          <span class="stat-number">{{ projects.length }}</span>
+          <span class="stat-label">Total Projects</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">{{ getCompletedProjects() }}</span>
+          <span class="stat-label">Completed</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">{{ getInProgressProjects() }}</span>
+          <span class="stat-label">In Progress</span>
+        </div>
+      </div>
+
+      <div class="project-list">
+        <div
+          class="project-card"
+          *ngFor="let project of filteredProjects"
+          [class.completed]="project.progress === 100"
+          (click)="viewProjectDetails(project)"
+        >
+          <img [src]="project.image" class="project-img" [alt]="project.name" />
+          <div class="project-info">
+            <div class="title-row">
+              <h4>{{ project.name }}</h4>
+              <div
+                class="status-badge"
+                [class.completed]="project.progress === 100"
+              >
+                {{ project.progress === 100 ? 'Completed' : 'In Progress' }}
+              </div>
+            </div>
+            <p>
+              {{ project.rooms }} rooms • {{ project.floors }} floors • {{
+              project.lastModified }}
+            </p>
+
+            <div class="progress-section">
+              <div class="progress-header">
+                <span class="label">Completion</span>
+                <span class="percent">{{ project.progress }}%</span>
+              </div>
+              <div class="bar-bg">
+                <div class="bar-fill" [style.width.%]="project.progress"></div>
+              </div>
+            </div>
+
+            <div class="action-row">
+              <button class="load-btn" (click)="loadProject(project, $event)">
+                <ion-icon name="play-outline"></ion-icon>
+                LOAD
+              </button>
+              <div class="icon-group">
+                <ion-icon
+                  name="create-outline"
+                  (click)="editProject(project, $event)"
+                  title="Edit Project"
+                ></ion-icon>
+                <ion-icon
+                  name="copy-outline"
+                  (click)="duplicateProject(project, $event)"
+                  title="Duplicate Project"
+                ></ion-icon>
+                <ion-icon
+                  name="trash-outline"
+                  (click)="deleteProject(project, $event)"
+                  title="Delete Project"
+                ></ion-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="no-results" *ngIf="filteredProjects.length === 0">
+        <ion-icon name="folder-open-outline"></ion-icon>
+        <p>No projects found</p>
+        <button class="reset-btn" (click)="clearSearch()">Clear Search</button>
+      </div>
+
+      <div class="fab-btn" (click)="createNewProject()">
+        <ion-icon name="add-outline"></ion-icon>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-container" [class.show]="showToast">
+    <div class="toast-message">
+      <ion-icon [name]="toastIcon"></ion-icon>
+      <span>{{ toastMessage }}</span>
+    </div>
+  </div>
 </ion-content>
