@@ -9,13 +9,14 @@
         defaultHref="/home"
         text=""
         icon="arrow-back-outline"
+        (click)="handleBackNavigation()"
       ></ion-back-button>
       <h1 class="page-title">Photo Design</h1>
-      <ion-icon name="menu-outline" class="menu-icon"></ion-icon>
+      <ion-icon name="menu-outline" class="menu-icon" (click)="openMenu()"></ion-icon>
     </div>
 
     <div class="content-glass">
-      <div class="feature-card">
+      <div class="feature-card" (click)="openCamera()">
         <img
           src="../../../assets/photodesign/photodesign1.png"
           class="bg-img"
@@ -25,23 +26,47 @@
         </div>
         <div class="corner-tl"></div>
         <div class="corner-br"></div>
+        <div class="feature-label">Take Photo</div>
       </div>
 
       <div class="action-row">
-        <div class="grid-card black-base">
+        <div class="grid-card black-base" (click)="openARMode()">
           <div class="grid-pattern"></div>
           <ion-icon name="camera-outline" class="gold-icon"></ion-icon>
+          <div class="card-label">AR Mode</div>
         </div>
 
-        <div class="grid-card image-base">
+        <div class="grid-card image-base" (click)="openGallery()">
           <img src="../../../assets/photodesign/photodesign3.png" />
           <div class="icon-center">
             <ion-icon name="image-outline"></ion-icon>
           </div>
+          <div class="card-label">Gallery</div>
         </div>
       </div>
 
-      <button class="continue-black">CONTINUE</button>
+      <button class="continue-black" (click)="continueToDesign()">
+        CONTINUE
+        <ion-icon name="arrow-forward-outline" class="btn-icon"></ion-icon>
+      </button>
+      
+      <div class="recent-designs">
+        <h3 class="section-title">Recent Designs</h3>
+        <div class="designs-scroll">
+          <div class="design-thumb" *ngFor="let design of recentDesigns" (click)="openDesign(design)">
+            <img [src]="design.thumbnail" [alt]="design.name" />
+            <span class="design-name">{{ design.name }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-container" [class.show]="showToast">
+    <div class="toast-message">
+      <ion-icon [name]="toastIcon"></ion-icon>
+      <span>{{ toastMessage }}</span>
     </div>
   </div>
 </ion-content>
