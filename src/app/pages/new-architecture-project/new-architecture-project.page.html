@@ -1,13 +1,87 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>new-architecture-project</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="ion-no-padding">
+  <div class="fixed-background">
+    <img src="../../assets/aromic background.png" alt="background" />
+  </div>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">new-architecture-project</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="main-overlay">
+    <div class="top-header">
+      <ion-button fill="clear" (click)="goBack()" class="back-icon">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+      <h2 class="page-title">New Architecture<br />Project</h2>
+      <ion-icon name="menu-outline" class="menu-icon"></ion-icon>
+    </div>
+
+    <div class="glass-card">
+      <div class="card-image-header">
+        <img src="../../../assets/BackgroundImage3.png" alt="preview" />
+        <div class="glass-gradient-overlay"></div>
+        <span class="room-counter">Room 1 of 25</span>
+      </div>
+
+      <div class="form-body">
+        <div class="input-group">
+          <label>Project Name:</label>
+          <div class="custom-input-box">
+            <ion-icon name="home-outline"></ion-icon>
+            <ion-input placeholder="e.g., Living Room"></ion-input>
+          </div>
+        </div>
+
+        <ion-row>
+          <ion-col size="6">
+            <div class="input-group">
+              <label>Width (m):</label>
+              <div class="custom-input-box">
+                <ion-icon name="pencil-outline"></ion-icon>
+                <ion-input type="number" placeholder="0.0"></ion-input>
+              </div>
+            </div>
+          </ion-col>
+          <ion-col size="6">
+            <div class="input-group">
+              <label>Length (m):</label>
+              <div class="custom-input-box">
+                <ion-icon name="pencil-outline"></ion-icon>
+                <ion-input type="number" placeholder="0.0"></ion-input>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <div class="input-group">
+          <label>Floor Number:</label>
+          <div class="custom-input-box">
+            <ion-icon name="layers-outline"></ion-icon>
+            <ion-select interface="popover" value="1">
+              <ion-select-option value="1">Floor 1</ion-select-option>
+              <ion-select-option value="2">Floor 2</ion-select-option>
+            </ion-select>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Notes:</label>
+          <div class="custom-input-box textarea-box">
+            <ion-icon name="reader-outline"></ion-icon>
+            <ion-textarea
+              rows="3"
+              placeholder="Additional Details..."
+            ></ion-textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-footer">
+      <button class="btn-primary-dark">
+        <ion-icon name="business-outline"></ion-icon>
+        Add another room
+      </button>
+      <button class="btn-primary-light">
+        <ion-icon name="cube-outline"></ion-icon>
+        Generate 3D house
+      </button>
+    </div>
+  </div>
 </ion-content>

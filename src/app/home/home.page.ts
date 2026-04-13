@@ -1,22 +1,14 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
+/* Keep only the components actually used in your HTML */
 import {
-  IonHeader,
-  IonToolbar,
-  IonButtons,
-  IonMenuButton,
   IonContent,
   IonIcon,
   IonAvatar,
-  IonButton,
   IonGrid,
   IonRow,
   IonCol,
-  IonCard,
-  IonItem,
-  IonThumbnail,
-  IonLabel,
-  IonFooter,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {
@@ -29,7 +21,12 @@ import {
   sparkles,
   layersOutline,
   apertureOutline,
-  arrowForwardOutline, menuOutline, arrowForwardCircleOutline, addOutline, informationOutline } from 'ionicons/icons';
+  arrowForwardOutline,
+  menuOutline,
+  arrowForwardCircleOutline,
+  addOutline,
+  informationOutline,
+} from 'ionicons/icons';
 
 @Component({
   selector: 'app-home',
@@ -38,26 +35,33 @@ import {
   standalone: true,
   imports: [
     CommonModule,
-    IonHeader,
-    IonToolbar,
-    IonButtons,
-    IonMenuButton,
+    RouterLink,
+    /* Cleaned up list to remove warnings */
     IonContent,
     IonIcon,
     IonAvatar,
-    IonButton,
     IonGrid,
     IonRow,
     IonCol,
-    IonCard,
-    IonItem,
-    IonThumbnail,
-    IonLabel,
-    IonFooter,
   ],
 })
 export class HomePage {
   constructor() {
-    addIcons({menuOutline,addOutline,informationOutline,homeOutline,arrowForwardCircleOutline,layersOutline,apertureOutline,gridOutline,informationCircleOutline,addCircle,arrowForwardOutline,sparkles,folderOutline,personOutline,});
+    addIcons({
+      menuOutline,
+      addOutline,
+      informationOutline,
+      homeOutline,
+      arrowForwardCircleOutline,
+      layersOutline,
+      apertureOutline,
+      gridOutline,
+      informationCircleOutline,
+      addCircle,
+      arrowForwardOutline,
+      sparkles,
+      folderOutline,
+      personOutline,
+    });
   }
 }
