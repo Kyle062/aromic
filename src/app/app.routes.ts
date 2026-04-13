@@ -61,6 +61,6 @@ export const routes: Routes = [
   },
   {
     path: 'materials-library',
-    loadComponent: () => import('./materials-library/materials-library.page').then( m => m.MaterialsLibraryPage)
+    loadComponent: () => import('./pages/materials-library/materials-library.page').then( m => m.MaterialsLibraryPage)
   },
 ];
