@@ -74,7 +74,7 @@ ion-content {
 }
 
 .content-glass {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.247);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-radius: 40px 40px 0 0;
@@ -379,6 +379,7 @@ ion-content {
   bottom: 30px;
   right: 30px;
   background: #1a1a1a;
+  transform: translateY(-90%);
   color: white;
   width: 60px;
   height: 60px;
@@ -398,6 +399,7 @@ ion-content {
   &:active {
     transform: scale(0.9);
     background: #333;
+     transform: translateY(-90%) scale(0.9);
   }
 }
 

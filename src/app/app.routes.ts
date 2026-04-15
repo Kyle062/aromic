@@ -30,14 +30,16 @@ export const routes: Routes = [
         loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
       },
       {
-        path: 'projects',
+        path: 'projects1',
         loadComponent: () =>
-          import('./projects/projects.page').then((m) => m.ProjectsPage),
+          import('./pages/projects/projects.page').then((m) => m.ProjectsPage),
       },
       {
-        path: 'library',
+        path: 'materials-library',
         loadComponent: () =>
-          import('./library/library.page').then((m) => m.LibraryPage),
+          import('./pages/materials-library/materials-library.page').then(
+            (m) => m.MaterialsLibraryPage,
+          ),
       },
       {
         path: 'profile',
@@ -53,23 +55,32 @@ export const routes: Routes = [
   },
   {
     path: 'tabs',
-    loadComponent: () => import('./tabs/tabs.page').then( m => m.TabsPage)
+    loadComponent: () => import('./tabs/tabs.page').then((m) => m.TabsPage),
   },
   {
     path: 'new-architecture-project',
-    loadComponent: () => import('./pages/new-architecture-project/new-architecture-project.page').then( m => m.NewArchitectureProjectPage)
+    loadComponent: () =>
+      import('./pages/new-architecture-project/new-architecture-project.page').then(
+        (m) => m.NewArchitectureProjectPage,
+      ),
   },
   {
     path: 'materials-library',
-    loadComponent: () => import('./pages/materials-library/materials-library.page').then( m => m.MaterialsLibraryPage)
+    loadComponent: () =>
+      import('./pages/materials-library/materials-library.page').then(
+        (m) => m.MaterialsLibraryPage,
+      ),
   },
   {
     path: 'photo-design',
-    loadComponent: () => import('./pages/photo-design/photo-design.page').then( m => m.PhotoDesignPage)
+    loadComponent: () =>
+      import('./pages/photo-design/photo-design.page').then(
+        (m) => m.PhotoDesignPage,
+      ),
   },
   {
     path: 'projects1',
-    loadComponent: () => import('./pages/projects/projects.page').then( m => m.ProjectsPage)
+    loadComponent: () =>
+      import('./pages/projects/projects.page').then((m) => m.ProjectsPage),
   },
-
 ];
