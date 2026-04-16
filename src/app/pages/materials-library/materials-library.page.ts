@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ModalController } from '@ionic/angular';
 import { addIcons } from 'ionicons';
 import {
   arrowBack,
@@ -11,7 +11,11 @@ import {
   heart,
   closeCircle,
   star,
+  eyeOutline,
+  layersOutline,
+  refreshOutline,
 } from 'ionicons/icons';
+import { MaterialDetailsModalComponent } from '../../components/material-details-modal/material-details-modal.component';
 
 interface Material {
   id: number;
@@ -23,6 +27,7 @@ interface Material {
   isNew: boolean;
   rating: number;
   isFavorite: boolean;
+  description?: string;
 }
 
 @Component({
@@ -50,6 +55,8 @@ export class MaterialsLibraryPage {
       isNew: false,
       rating: 4.8,
       isFavorite: false,
+      description:
+        'Premium oak wood flooring with a natural finish. Durable and elegant, perfect for living rooms and bedrooms. Easy to install and maintain.',
     },
     {
       id: 2,
@@ -61,6 +68,8 @@ export class MaterialsLibraryPage {
       isNew: true,
       rating: 4.9,
       isFavorite: false,
+      description:
+        'Luxurious marble wall tiles that add sophistication to any space. Heat and scratch resistant. Perfect for kitchens and bathrooms.',
     },
     {
       id: 3,
@@ -72,6 +81,8 @@ export class MaterialsLibraryPage {
       isNew: false,
       rating: 4.7,
       isFavorite: false,
+      description:
+        'Contemporary 3-seater sofa with premium fabric upholstery. Includes two matching pillows. Available in multiple colors.',
     },
     {
       id: 4,
@@ -83,6 +94,8 @@ export class MaterialsLibraryPage {
       isNew: true,
       rating: 4.6,
       isFavorite: false,
+      description:
+        'High-end brass faucet with modern design. Features water-saving technology and easy installation.',
     },
     {
       id: 5,
@@ -94,6 +107,8 @@ export class MaterialsLibraryPage {
       isNew: false,
       rating: 4.5,
       isFavorite: false,
+      description:
+        'Rich cherry wood flooring with a warm tone. Easy to maintain and long-lasting. Adds elegance to any room.',
     },
     {
       id: 6,
@@ -105,12 +120,14 @@ export class MaterialsLibraryPage {
       isNew: false,
       rating: 4.4,
       isFavorite: false,
+      description:
+        'Versatile ceramic tiles perfect for kitchens and bathrooms. Stain and moisture resistant. Easy to clean.',
     },
   ];
 
   filteredMaterials: Material[] = [];
 
-  constructor() {
+  constructor(private modalController: ModalController) {
     addIcons({
       arrowBack,
       menuOutline,
@@ -119,6 +136,9 @@ export class MaterialsLibraryPage {
       heart,
       closeCircle,
       star,
+      eyeOutline,
+      layersOutline,
+      refreshOutline,
     });
 
     this.filteredMaterials = [...this.materials];
@@ -191,10 +211,38 @@ export class MaterialsLibraryPage {
     );
   }
 
-  // View material details
-  viewMaterialDetails(material: Material) {
-    this.showToastMessage(`Viewing ${material.name}`, 'eye-outline');
-    
+  // View material details - Opens modal
+  async viewMaterialDetails(material: Material) {
+    const modal = await this.modalController.create({
+      component: MaterialDetailsModalComponent,
+      componentProps: {
+        material: material,
+      },
+      cssClass: 'material-details-modal',
+      backdropDismiss: true,
+    });
+
+    modal.onDidDismiss().then((result) => {
+      if (result.data) {
+        console.log('Modal dismissed with data:', result.data);
+        if (result.data.action === 'apply') {
+          this.showToastMessage(
+            `Applied ${result.data.material.name} to ${result.data.room}`,
+            'checkmark-circle-outline',
+          );
+        }
+        // Update the material in the main list if favorite status changed
+        const index = this.materials.findIndex(
+          (m) => m.id === result.data.material.id,
+        );
+        if (index !== -1) {
+          this.materials[index] = result.data.material;
+          this.applyFilters(); // Refresh the filtered list
+        }
+      }
+    });
+
+    return await modal.present();
   }
 
   // Toast notification helper

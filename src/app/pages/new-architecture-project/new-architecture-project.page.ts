@@ -36,6 +36,9 @@ export class NewArchitectureProjectPage {
   showToast: boolean = false;
   toastMessage: string = '';
 
+  // ADD THIS MISSING ARRAY DECLARATION:
+  allRoomsData: any[] = [];
+
   projectData: ProjectData = {
     projectName: '',
     width: null,
@@ -66,9 +69,11 @@ export class NewArchitectureProjectPage {
   }
 
   async addAnotherRoom() {
-    // Save current room data (you can add logic to store this in an array)
+    // Save current room data
     const roomData = { ...this.projectData, roomNumber: this.currentRoom };
+    this.allRoomsData.push(roomData); // ADD THIS LINE to save the room
     console.log('Room saved:', roomData);
+    console.log('All rooms so far:', this.allRoomsData);
 
     // Increment room counter
     this.currentRoom++;
@@ -76,24 +81,36 @@ export class NewArchitectureProjectPage {
     // Show success message
     this.showToastMessage('Successfully added another room!');
 
-    // Clear form for next room (optional - you can keep or clear the data)
+    // Clear form for next room
     this.clearForm();
   }
 
   async generate3DHouse() {
     // Save final room data
     const finalRoomData = { ...this.projectData, roomNumber: this.currentRoom };
-    console.log('Final room saved:', finalRoomData);
+    this.allRoomsData.push(finalRoomData);
+    console.log('All rooms saved:', this.allRoomsData);
 
-    // Show success message
-    this.showToastMessage('Successfully generated 3D house!');
+    // Prepare data to send to 3D view
+    const houseData = {
+      projectName: this.projectData.projectName || 'Untitled Project',
+      totalRooms: this.currentRoom,
+      rooms: this.allRoomsData,
+      dimensions: {
+        width: this.projectData.width,
+        length: this.projectData.length,
+      },
+      floor: this.projectData.floor,
+      notes: this.projectData.notes,
+    };
 
-    // You can add navigation to 3D view here
+   
+    // Navigate to 3D house view page
     setTimeout(() => {
-      // Navigate to 3D view page (adjust path as needed)
-      // this.navCtrl.navigateForward('/3d-view');
-      console.log('Navigating to 3D view...');
-    }, 1500);
+      this.navCtrl.navigateForward('/3d-house-view', {
+        queryParams: { houseData: JSON.stringify(houseData) },
+      });
+    }, 500);
   }
 
   private showToastMessage(message: string) {
@@ -107,7 +124,7 @@ export class NewArchitectureProjectPage {
   }
 
   private clearForm() {
-    // Clear all form fields except floor (keep as default 1)
+    // Clear all form fields except floor
     this.projectData = {
       projectName: '',
       width: null,
@@ -120,17 +137,17 @@ export class NewArchitectureProjectPage {
   // Optional: Method to reset the entire project
   resetProject() {
     this.currentRoom = 1;
+    this.allRoomsData = []; // Also clear the rooms array
     this.clearForm();
     this.projectData.floor = '1';
   }
 
-  // Optional: Method to get all rooms data (implement storage logic)
+  // Optional: Method to get all rooms data
   getAllRooms() {
-    // This is where you'd implement logic to retrieve all saved rooms
-    // For now, just returning example structure
     return {
       totalRooms: this.currentRoom,
       maxRooms: this.totalRooms,
+      rooms: this.allRoomsData,
     };
   }
 }

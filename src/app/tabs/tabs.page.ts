@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterModule, Router } from '@angular/router'; // Add Router import
 import {
   IonTabs,
   IonTabBar,
@@ -12,17 +13,32 @@ import {
   gridOutline,
   sparkles,
   folderOutline,
-  personOutline, imageOutline } from 'ionicons/icons';
+  personOutline,
+  imageOutline,
+} from 'ionicons/icons';
 
 @Component({
   selector: 'app-tabs',
   templateUrl: './tabs.page.html',
   styleUrls: ['./tabs.page.scss'],
   standalone: true,
-  imports: [IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel],
+  imports: [IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel, RouterModule],
 })
 export class TabsPage {
-  constructor() {
-    addIcons({imageOutline,homeOutline,gridOutline,folderOutline,personOutline,sparkles,});
+  constructor(private router: Router) {
+    // Inject Router
+    addIcons({
+      imageOutline,
+      homeOutline,
+      gridOutline,
+      folderOutline,
+      personOutline,
+      sparkles,
+    });
+  }
+
+  navigateToPhotodesign() {
+    this.router.navigate(['/photo-design']);
   }
 }
+  

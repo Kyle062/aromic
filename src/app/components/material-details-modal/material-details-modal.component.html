@@ -1,0 +1,126 @@
+<ion-content class="modal-content">
+  <div class="modal-container">
+    <!-- Swipe Indicator -->
+    <div class="swipe-indicator">
+      <div class="swipe-bar"></div>
+    </div>
+
+    <!-- Header with close button -->
+    <div class="modal-header">
+      <ion-button fill="clear" (click)="closeModal()" class="close-button">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+      <ion-button
+        fill="clear"
+        (click)="toggleFavorite()"
+        class="favorite-button"
+      >
+        <ion-icon
+          [name]="material.isFavorite ? 'heart' : 'heart-outline'"
+          [class.liked]="material.isFavorite"
+        ></ion-icon>
+      </ion-button>
+    </div>
+
+    <!-- Material Image -->
+    <div class="image-container">
+      <img [src]="material.image" [alt]="material.name" />
+      <div class="badge-3d" *ngIf="material.is3D">3D Model Available</div>
+      <div class="badge-new" *ngIf="material.isNew">NEW</div>
+    </div>
+
+    <!-- Material Details -->
+    <div class="details-container">
+      <div class="title-section">
+        <h1>{{ material.name }}</h1>
+        <div class="rating">
+          <ion-icon name="star"></ion-icon>
+          <span>{{ material.rating }}</span>
+        </div>
+      </div>
+
+      <div class="price-section">
+        <span class="price">{{ material.price | currency }}</span>
+        <span class="category">{{ material.category | uppercase }}</span>
+      </div>
+
+      <!-- Description -->
+      <div class="description-section">
+        <h3>Description</h3>
+        <p>{{ getDescription() }}</p>
+      </div>
+
+      <!-- Specifications -->
+      <div class="specifications">
+        <h3>Specifications</h3>
+        <div class="spec-grid">
+          <div class="spec-item">
+            <span class="spec-label">Material Type:</span>
+            <span class="spec-value">{{ material.category }}</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">3D Available:</span>
+            <span class="spec-value">{{ material.is3D ? "Yes" : "No" }}</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Rating:</span>
+            <span class="spec-value">{{ material.rating }} / 5.0</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">SKU:</span>
+            <span class="spec-value"
+              >#MAT{{ material.id.toString().padStart(4, "0") }}</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Room Selection Dropdown -->
+      <div class="room-selection">
+        <h3>Select Room</h3>
+        <div class="custom-select">
+          <ion-icon name="location-outline" class="select-icon"></ion-icon>
+          <ion-select
+            [(ngModel)]="selectedRoom"
+            interface="popover"
+            placeholder="Choose a room"
+            class="room-select"
+          >
+            <ion-select-option *ngFor="let room of rooms" [value]="room.value" class="room-label">
+              {{ room.label }}
+            </ion-select-option>
+          </ion-select>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <ion-button
+          expand="block"
+          class="apply-button"
+          (click)="applyMaterial()"
+        >
+          <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
+          Apply to Room
+        </ion-button>
+        <ion-button
+          expand="block"
+          fill="outline"
+          class="favorite-button-bottom"
+          (click)="addToFavorites()"
+        >
+          <ion-icon name="heart-outline" slot="start"></ion-icon>
+          Add to Favorites
+        </ion-button>
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast-container" [class.show]="showToast">
+      <div class="toast-message">
+        <ion-icon [name]="toastIcon"></ion-icon>
+        <span>{{ toastMessage }}</span>
+      </div>
+    </div>
+  </div>
+</ion-content>
