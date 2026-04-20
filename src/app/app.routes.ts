@@ -102,5 +102,9 @@ export const routes: Routes = [
       import('./pages/3d-house-view/3d-house-view.page').then(
         (m) => m.ThreeDHouseViewPage,
       ),
+  },  {
+    path: 'room-list',
+    loadComponent: () => import('./pages/room-list/room-list.page').then( m => m.RoomListPage)
   },
+
 ];
