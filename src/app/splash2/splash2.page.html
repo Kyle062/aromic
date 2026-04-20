@@ -1,13 +1,26 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>splash2</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">splash2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="splash-container">
+    <div class="logo-wrapper">
+      <!-- Animated Logo -->
+      <img
+        src="../../assets/aromic logo.png"
+        alt="Aromic Logo"
+        class="splash-logo"
+      />
+
+   
+
+      <!-- Loading Indicator -->
+      <div class="loading-indicator">
+        <div class="loading-dot"></div>
+        <div class="loading-dot"></div>
+        <div class="loading-dot"></div>
+      </div>
+    </div>
+
+    <!-- Optional: Footer Text -->
+    <div class="splash-footer">
+      <p class="footer-text">Loading your experience...</p>
+    </div>
+  </div>
 </ion-content>

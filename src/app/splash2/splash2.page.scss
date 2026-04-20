@@ -1,0 +1,247 @@
+ion-content {
+  --background: #fafafa;
+  position: relative;
+
+  .splash-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    padding: 80px 20px 50px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  // Architectural decorative lines
+  .arch-line {
+    position: absolute;
+    background: linear-gradient(90deg, transparent, #d4af37, transparent);
+    opacity: 0;
+
+    &-top {
+      top: 30px;
+      left: 20%;
+      right: 20%;
+      height: 1px;
+      animation: lineReveal 1.5s ease-out forwards 0.3s;
+    }
+
+    &-bottom {
+      bottom: 30px;
+      left: 20%;
+      right: 20%;
+      height: 1px;
+      animation: lineReveal 1.5s ease-out forwards 0.3s;
+    }
+
+    &-left {
+      top: 20%;
+      bottom: 20%;
+      left: 30px;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, #d4af37, transparent);
+      animation: lineRevealVertical 1.5s ease-out forwards 0.5s;
+    }
+
+    &-right {
+      top: 20%;
+      bottom: 20%;
+      right: 30px;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, #d4af37, transparent);
+      animation: lineRevealVertical 1.5s ease-out forwards 0.5s;
+    }
+  }
+
+  .logo-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    gap: 40px;
+    z-index: 2;
+  }
+
+  .splash-logo {
+    width: 180px;
+    height: auto;
+    object-fit: contain;
+    opacity: 0;
+
+    animation:
+      luxuryReveal 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards 0.2s,
+      breathe 4s ease-in-out infinite 1.4s;
+
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.06));
+  }
+
+  .loading-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 50px;
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards 1s;
+  }
+
+  .loading-dot {
+    width: 5px;
+    height: 5px;
+    background-color: #d4af37; // Gold accent
+    border-radius: 50%;
+
+    &:nth-child(1) {
+      animation: luxuryPulse 2s ease-in-out infinite;
+    }
+
+    &:nth-child(2) {
+      animation: luxuryPulse 2s ease-in-out infinite 0.4s;
+    }
+
+    &:nth-child(3) {
+      animation: luxuryPulse 2s ease-in-out infinite 0.8s;
+    }
+  }
+
+  .splash-footer {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards 1.4s;
+    z-index: 2;
+  }
+
+  .footer-text {
+    font-family: "Didot", "Bodoni", "Playfair Display", "Georgia", serif;
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: #aaaaaa;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin: 0;
+  }
+}
+
+@keyframes lineReveal {
+  0% {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  100% {
+    opacity: 0.4;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes lineRevealVertical {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  100% {
+    opacity: 0.4;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes luxuryReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.015);
+  }
+}
+
+@keyframes luxuryPulse {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.4);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Exit Animation
+.exit-animation {
+  .arch-line {
+    animation: lineExit 0.4s ease-in forwards !important;
+  }
+
+  .splash-logo {
+    animation: luxuryExit 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards !important;
+  }
+
+  .loading-indicator,
+  .splash-footer {
+    animation: fadeOut 0.4s ease-in forwards !important;
+  }
+}
+
+@keyframes lineExit {
+  0% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+@keyframes luxuryExit {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

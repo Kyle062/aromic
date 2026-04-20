@@ -3,8 +3,13 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'splash',
+    redirectTo: 'splash2', 
     pathMatch: 'full',
+  },
+  {
+    path: 'splash2', 
+    loadComponent: () =>
+      import('./splash2/splash2.page').then((m) => m.Splash2Page),
   },
   {
     path: 'splash',
@@ -27,7 +32,8 @@ export const routes: Routes = [
     children: [
       {
         path: 'home',
-        loadComponent: () => import('./pages/home/home.page').then((m) => m.HomePage),
+        loadComponent: () =>
+          import('./pages/home/home.page').then((m) => m.HomePage),
       },
       {
         path: 'projects1',
@@ -96,9 +102,5 @@ export const routes: Routes = [
       import('./pages/3d-house-view/3d-house-view.page').then(
         (m) => m.ThreeDHouseViewPage,
       ),
-  },  {
-    path: 'splash2',
-    loadComponent: () => import('./splash2/splash2.page').then( m => m.Splash2Page)
   },
-
 ];
