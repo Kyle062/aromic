@@ -12,6 +12,11 @@
         <ion-button fill="clear" (click)="resetView()">
           <ion-icon name="refresh-outline"></ion-icon>
         </ion-button>
+        <ion-button fill="clear" (click)="toggleInteriorView()">
+          <ion-icon
+            [name]="isInteriorView ? 'eye-outline' : 'home-outline'"
+          ></ion-icon>
+        </ion-button>
       </div>
       <div class="right-icons">
         <ion-button fill="clear">
@@ -28,18 +33,24 @@
       <div class="toggle-row">
         <button
           class="btn-toggle"
-          [class.active]="isAutoGenerate"
-          (click)="isAutoGenerate = true"
+          [class.active]="showRoof"
+          (click)="toggleRoof()"
         >
-          AUTO GENERATE
+          <ion-icon name="cube-outline"></ion-icon>
+          ROOF
         </button>
         <button
           class="btn-toggle"
-          [class.active]="!isAutoGenerate"
-          (click)="isAutoGenerate = false"
+          [class.active]="showFrontWall"
+          (click)="toggleFrontWall()"
         >
-          MANUAL ADJUST
+          <ion-icon name="grid-outline"></ion-icon>
+          FRONT WALL
         </button>
+      </div>
+
+      <div class="view-indicator" *ngIf="isInteriorView">
+        <span>🔍 Interior View Mode</span>
       </div>
 
       <button
@@ -56,10 +67,6 @@
         <button class="btn-half secondary" (click)="retryGeneration()">
           RETRY
         </button>
-      </div>
-
-      <div class="footer-icon">
-        <ion-icon name="grid-outline"></ion-icon>
       </div>
     </div>
   </div>
