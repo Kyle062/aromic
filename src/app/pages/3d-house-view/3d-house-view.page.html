@@ -19,6 +19,12 @@
         </ion-button>
       </div>
       <div class="right-icons">
+        <ion-button fill="clear" (click)="toggleFloor()">
+          <ion-icon name="layers-outline"></ion-icon>
+          <span style="margin-left: 5px; font-size: 12px"
+            >F{{ currentFloor }}</span
+          >
+        </ion-button>
         <ion-button fill="clear">
           <ion-icon name="save-outline"></ion-icon>
         </ion-button>
@@ -33,24 +39,35 @@
       <div class="toggle-row">
         <button
           class="btn-toggle"
-          [class.active]="showRoof"
-          (click)="toggleRoof()"
-        >
-          <ion-icon name="cube-outline"></ion-icon>
-          ROOF
-        </button>
-        <button
-          class="btn-toggle"
-          [class.active]="showFrontWall"
+          [class.active]="!showFrontWall"
           (click)="toggleFrontWall()"
         >
-          <ion-icon name="grid-outline"></ion-icon>
-          FRONT WALL
+          <ion-icon name="eye-outline"></ion-icon>
+          {{ showFrontWall ? 'HIDE WALLS' : 'SHOW WALLS' }}
+        </button>
+        <button class="btn-toggle active">
+          <ion-icon name="home-outline"></ion-icon>
+          MANSION
         </button>
       </div>
 
-      <div class="view-indicator" *ngIf="isInteriorView">
-        <span>🔍 Interior View Mode</span>
+      <div class="floor-indicator">
+        <span
+          class="floor-badge"
+          [class.active]="currentFloor === 1"
+          (click)="currentFloor = 1; toggleFloor()"
+        >
+          🏠 Floor 1
+        </span>
+        <span class="floor-label">Living • Kitchen • Dining</span>
+        <span
+          class="floor-badge"
+          [class.active]="currentFloor === 2"
+          (click)="currentFloor = 2; toggleFloor()"
+        >
+          🛏️ Floor 2
+        </span>
+        <span class="floor-label">Master • Bedroom • Bath</span>
       </div>
 
       <button
@@ -59,13 +76,13 @@
         [disabled]="isGenerating"
       >
         <ion-spinner *ngIf="isGenerating" name="dots"></ion-spinner>
-        <span *ngIf="!isGenerating">GENERATE DESIGN</span>
+        <span *ngIf="!isGenerating">REDESIGN MANSION</span>
       </button>
 
       <div class="final-row">
-        <button class="btn-half primary" (click)="goToHome()">ACCEPT</button>
+        <button class="btn-half primary" (click)="goToHome()">SAVE</button>
         <button class="btn-half secondary" (click)="retryGeneration()">
-          RETRY
+          RESET
         </button>
       </div>
     </div>

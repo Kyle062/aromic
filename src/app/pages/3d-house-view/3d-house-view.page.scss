@@ -18,9 +18,11 @@
     font-size: 1.2rem;
   }
 
-  .left-icons {
+  .left-icons,
+  .right-icons {
     display: flex;
     gap: 5px;
+    align-items: center;
   }
 }
 
@@ -91,13 +93,37 @@
     }
   }
 
-  .view-indicator {
-    text-align: center;
-    padding: 8px;
-    background: rgba(0, 0, 0, 0.05);
-    border-radius: 20px;
-    font-size: 0.8rem;
-    color: #666;
+  .floor-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 30px;
+    flex-wrap: wrap;
+    gap: 5px;
+
+    .floor-badge {
+      background: #e5dbd0;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #666;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &.active {
+        background: #1a1a1a;
+        color: white;
+      }
+    }
+
+    .floor-label {
+      font-size: 0.7rem;
+      color: #999;
+      font-weight: 500;
+    }
   }
 
   .btn-wide {
