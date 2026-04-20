@@ -27,7 +27,7 @@ export const routes: Routes = [
     children: [
       {
         path: 'home',
-        loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
+        loadComponent: () => import('./pages/home/home.page').then((m) => m.HomePage),
       },
       {
         path: 'projects1',
@@ -44,12 +44,19 @@ export const routes: Routes = [
       {
         path: 'profile',
         loadComponent: () =>
-          import('./profile/profile.page').then((m) => m.ProfilePage),
+          import('./pages/profile/profile.page').then((m) => m.ProfilePage),
       },
       {
         path: '',
         redirectTo: '/home',
         pathMatch: 'full',
+      },
+      {
+        path: 'photo-design',
+        loadComponent: () =>
+          import('./pages/photo-design/photo-design.page').then(
+            (m) => m.PhotoDesignPage,
+          ),
       },
     ],
   },
