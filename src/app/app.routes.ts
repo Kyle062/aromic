@@ -96,5 +96,9 @@ export const routes: Routes = [
       import('./pages/3d-house-view/3d-house-view.page').then(
         (m) => m.ThreeDHouseViewPage,
       ),
+  },  {
+    path: 'splash2',
+    loadComponent: () => import('./splash2/splash2.page').then( m => m.Splash2Page)
   },
+
 ];
