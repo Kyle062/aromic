@@ -2,12 +2,10 @@
   href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@100..900&display=swap"
   rel="stylesheet"
 />
-
 <link
   href="https://fonts.googleapis.com/css2?family=Lusitana:wght@400;700&display=swap"
   rel="stylesheet"
 />
-
 <ion-content [fullscreen]="true">
   <div class="login-wrapper">
     <div class="glass-card">
@@ -23,10 +21,11 @@
 
       <div class="form-container">
         <div class="input-group">
-          <label>Email/ Phone Number:</label>
+          <label>Email/ Username:</label>
           <ion-input
-            type="email"
-            placeholder="Lilla110605@gmail.com"
+            type="text"
+            [(ngModel)]="identifier"
+            placeholder="admin@aromic.com"
             class="custom-input"
           ></ion-input>
         </div>
@@ -39,7 +38,8 @@
           <div class="password-wrapper">
             <ion-input
               [type]="passwordType"
-              placeholder=""
+              [(ngModel)]="password"
+              placeholder="••••••••••••"
               class="custom-input"
             ></ion-input>
             <ion-icon
@@ -51,7 +51,10 @@
         </div>
 
         <div class="remember-me">
-          <ion-checkbox labelPlacement="end" justify="start"
+          <ion-checkbox
+            [(ngModel)]="rememberMe"
+            labelPlacement="end"
+            justify="start"
             >Remember me</ion-checkbox
           >
         </div>

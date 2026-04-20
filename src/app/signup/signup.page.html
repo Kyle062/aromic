@@ -22,6 +22,7 @@
           <label>Email/ Phone Number:</label>
           <ion-input
             type="email"
+            [(ngModel)]="email"
             placeholder="Lilila110605@gmail.com"
             class="custom-input"
           ></ion-input>
@@ -31,6 +32,7 @@
           <label>Username:</label>
           <ion-input
             type="text"
+            [(ngModel)]="username"
             placeholder="Kayieee123"
             class="custom-input"
           ></ion-input>
@@ -41,6 +43,7 @@
           <div class="password-wrapper">
             <ion-input
               [type]="passwordType"
+              [(ngModel)]="password"
               placeholder="••••••••••••"
               class="custom-input"
             ></ion-input>
@@ -57,6 +60,7 @@
           <div class="password-wrapper">
             <ion-input
               [type]="confirmPasswordType"
+              [(ngModel)]="confirmPassword"
               placeholder="••••••••••••"
               class="custom-input"
             ></ion-input>
@@ -69,12 +73,18 @@
         </div>
 
         <div class="terms-checkbox">
-          <ion-checkbox labelPlacement="end" justify="start">
+          <ion-checkbox
+            [(ngModel)]="termsAccepted"
+            labelPlacement="end"
+            justify="start"
+          >
             I accept the terms of use and Privacy Policy
           </ion-checkbox>
         </div>
 
-        <ion-button expand="block" class="login-btn">SIGN UP</ion-button>
+        <ion-button expand="block" class="login-btn" (click)="signup()"
+          >SIGN UP</ion-button
+        >
 
         <div class="separator">
           <span class="line"></span>
@@ -95,7 +105,6 @@
           />
         </div>
 
-        <!-- NEW: Already have an account? Login link -->
         <div class="login-prompt">
           Already have an account? <a routerLink="/login">Login</a>
         </div>
