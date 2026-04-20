@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonBackButton, IonIcon } from '@ionic/angular/standalone';
+import { Router } from '@angular/router'; // ✅ Import Router
 import { addIcons } from 'ionicons';
 import {
   arrowBackOutline,
@@ -16,6 +17,7 @@ import {
   copyOutline,
   folderOpenOutline,
   checkmarkCircleOutline,
+  eyeOutline, // ✅ Add missing icon
 } from 'ionicons/icons';
 
 interface Project {
@@ -73,7 +75,7 @@ export class ProjectsPage {
 
   filteredProjects: Project[] = [];
 
-  constructor() {
+  constructor(private router: Router) { // ✅ Inject Router
     addIcons({
       ellipsisHorizontal,
       searchOutline,
@@ -87,6 +89,7 @@ export class ProjectsPage {
       copyOutline,
       folderOpenOutline,
       checkmarkCircleOutline,
+      eyeOutline, // ✅ Register missing icon
     });
 
     this.filteredProjects = [...this.projects];
@@ -119,16 +122,32 @@ export class ProjectsPage {
   }
 
   viewProjectDetails(project: Project) {
-    this.showToastMessage(`Viewing ${project.name}`, 'eye-outline');
+    console.log('View project details:', project);
+    // Navigate to project details page
+    this.router.navigate(['/project-details', project.id]);
+    // Or show modal:
+    // this.showToastMessage(`Viewing ${project.name}`, 'eye-outline');
   }
 
   loadProject(project: Project, event: Event) {
     event.stopPropagation();
+    console.log('Loading project:', project);
+    
+    // Navigate to room list with project context
+    this.router.navigate(['/room-list'], {
+      queryParams: { projectId: project.id, projectName: project.name },
+    });
+    
     this.showToastMessage(`Loading ${project.name}...`, 'play-outline');
   }
 
   editProject(project: Project, event: Event) {
     event.stopPropagation();
+    console.log('Edit project:', project);
+    
+    // Navigate to edit project page or open modal
+    this.router.navigate(['/edit-project', project.id]);
+    
     this.showToastMessage(`Editing ${project.name}`, 'create-outline');
   }
 
@@ -137,14 +156,14 @@ export class ProjectsPage {
 
     const newProject: Project = {
       ...project,
-      id: this.projects.length + 1,
+      id: Date.now(), // ✅ Better ID generation
       name: `${project.name} (Copy)`,
       progress: 0,
       lastModified: 'Just now',
     };
 
     this.projects.unshift(newProject);
-    this.filteredProjects = [...this.projects];
+    this.filterProjects(); // ✅ Reapply current filter
     this.showToastMessage(
       `${project.name} duplicated successfully`,
       'copy-outline',
@@ -158,13 +177,18 @@ export class ProjectsPage {
     if (index > -1) {
       const projectName = project.name;
       this.projects.splice(index, 1);
-      this.filterProjects();
+      this.filterProjects(); 
       this.showToastMessage(`${projectName} deleted`, 'trash-outline');
     }
   }
 
   createNewProject() {
-    this.showToastMessage('Create new project', 'add-outline');
+    console.log('Create new project');
+    
+    // Navigate to room list for new project creation
+    this.router.navigate(['/new-architecture-project'], {
+      queryParams: { newProject: true },
+    });
   }
 
   getCompletedProjects(): number {

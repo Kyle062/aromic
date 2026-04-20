@@ -1,155 +1,106 @@
-<ion-content [fullscreen]="true">
-  <img
-    class="bg-image"
-    src="../../assets/aromic background.png"
-    alt="Background"
-  />
+<ion-content [fullscreen]="true" class="ion-no-padding">
+  <!-- Fixed Background Image -->
+  <div class="fixed-background">
+    <img src="../../assets/aromic background.png" alt="background" />
+  </div>
 
-  <div class="main-container">
-    <div class="custom-header">
-      <ion-icon name="arrow-back-outline" class="back-icon"></ion-icon>
-      <h1 class="page-title">Room List</h1>
+  <!-- Main Overlay Content -->
+  <div class="main-overlay">
+    <!-- Header -->
+    <div class="top-header">
+      <ion-back-button
+        defaultHref="/home"
+        text=""
+        icon="arrow-back"
+        class="back-icon"
+      ></ion-back-button>
+      <h2 class="page-title">Room List</h2>
       <div class="room-badge">4 Rooms</div>
     </div>
 
-    <div class="floor-divider">
-      <div class="line"></div>
-      <div class="floor-badge">FLOOR 1</div>
-      <div class="line"></div>
-    </div>
+    <!-- Glass Container -->
+    <div class="glass-container">
+      <!-- Floor 1 Section -->
+      <div class="floor-section">
+        <div class="floor-divider">
+          <div class="line"></div>
+          <div class="floor-badge">FLOOR 1</div>
+          <div class="line"></div>
+        </div>
 
-    <div class="room-card">
-      <div class="drag-dots">
-        <span></span><span></span><span></span><span></span><span></span
-        ><span></span>
+        <!-- Room Cards -->
+        <div class="room-card" *ngFor="let room of floor1Rooms">
+          <div class="drag-dots">
+            <span></span><span></span><span></span> <span></span><span></span
+            ><span></span>
+          </div>
+          <img class="room-thumb" [src]="room.image" [alt]="room.name" />
+          <div class="room-info">
+            <h2>{{ room.name }}</h2>
+            <p>{{ room.dimensions }} • {{ room.area }}m²</p>
+          </div>
+          <div class="room-actions">
+            <ion-icon name="create-outline" (click)="editRoom(room)"></ion-icon>
+            <ion-icon
+              name="trash-outline"
+              (click)="deleteRoom(room)"
+            ></ion-icon>
+          </div>
+        </div>
       </div>
-      <img
-        class="room-thumb"
-        src="https://images.unsplash.com/photo-1583847268964-b28ce8f31586?w=150&q=80&auto=format&fit=crop"
-        alt="Living Room"
-      />
-      <div class="room-info">
-        <h2>Living Room</h2>
-        <p>6m x 8m &bull; 48m&sup2;</p>
-      </div>
-      <div class="room-actions">
-        <ion-icon name="create-outline"></ion-icon>
-        <ion-icon name="trash-outline"></ion-icon>
-      </div>
-    </div>
 
-    <div class="room-card">
-      <div class="drag-dots">
-        <span></span><span></span><span></span><span></span><span></span
-        ><span></span>
-      </div>
-      <img
-        class="room-thumb"
-        src="https://images.unsplash.com/photo-1556910103-1c02745a8728?w=150&q=80&auto=format&fit=crop"
-        alt="Kitchen"
-      />
-      <div class="room-info">
-        <h2>Kitchen</h2>
-        <p>4m x 5m &bull; 20m&sup2;</p>
-      </div>
-      <div class="room-actions">
-        <ion-icon name="create-outline"></ion-icon>
-        <ion-icon name="trash-outline"></ion-icon>
-      </div>
-    </div>
+      <!-- Floor 2 Section -->
+      <div class="floor-section">
+        <div class="floor-divider">
+          <div class="line"></div>
+          <div class="floor-badge">FLOOR 2</div>
+          <div class="line"></div>
+        </div>
 
-    <div class="room-card">
-      <div class="drag-dots">
-        <span></span><span></span><span></span><span></span><span></span
-        ><span></span>
+        <!-- Room Cards -->
+        <div class="room-card" *ngFor="let room of floor2Rooms">
+          <div class="drag-dots">
+            <span></span><span></span><span></span> <span></span><span></span
+            ><span></span>
+          </div>
+          <img class="room-thumb" [src]="room.image" [alt]="room.name" />
+          <div class="room-info">
+            <h2>{{ room.name }}</h2>
+            <p>{{ room.dimensions }} • {{ room.area }}m²</p>
+          </div>
+          <div class="room-actions">
+            <ion-icon name="create-outline" (click)="editRoom(room)"></ion-icon>
+            <ion-icon
+              name="trash-outline"
+              (click)="deleteRoom(room)"
+            ></ion-icon>
+          </div>
+        </div>
       </div>
-      <img
-        class="room-thumb"
-        src="https://images.unsplash.com/photo-1617806118233-18e1c0945594?w=150&q=80&auto=format&fit=crop"
-        alt="Dining Room"
-      />
-      <div class="room-info">
-        <h2>Dining Room</h2>
-        <p>4m x 4m &bull; 16m&sup2;</p>
-      </div>
-      <div class="room-actions">
-        <ion-icon name="create-outline"></ion-icon>
-        <ion-icon name="trash-outline"></ion-icon>
-      </div>
-    </div>
 
-    <div class="floor-divider">
-      <div class="line"></div>
-      <div class="floor-badge">FLOOR 2</div>
-      <div class="line"></div>
-    </div>
+      <!-- Empty State -->
+      <div
+        class="empty-state"
+        *ngIf="floor1Rooms.length === 0 && floor2Rooms.length === 0"
+      >
+        <ion-icon name="home-outline"></ion-icon>
+        <p>No rooms added yet</p>
+        <button class="add-room-btn" (click)="addNewRoom()">
+          Add Your First Room
+        </button>
+      </div>
 
-    <div class="room-card">
-      <div class="drag-dots">
-        <span></span><span></span><span></span><span></span><span></span
-        ><span></span>
-      </div>
-      <img
-        class="room-thumb"
-        src="https://images.unsplash.com/photo-1540518614846-7eded433c457?w=150&q=80&auto=format&fit=crop"
-        alt="Bedroom"
-      />
-      <div class="room-info">
-        <h2>Bedroom 2</h2>
-        <p>4m x 5m &bull; 20m&sup2;</p>
-      </div>
-      <div class="room-actions">
-        <ion-icon name="create-outline"></ion-icon>
-        <ion-icon name="trash-outline"></ion-icon>
+      <!-- Bottom Spacing -->
+      <div style="height: 20px"></div>
+      <div class="action-footer">
+        <button class="btn-primary-light" (click)="generate3DHouse()">
+          <ion-icon name="cube-outline"></ion-icon>
+          Generate 3D house
+        </button>
       </div>
     </div>
-
-    <div class="room-card">
-      <div class="drag-dots">
-        <span></span><span></span><span></span><span></span><span></span
-        ><span></span>
-      </div>
-      <img
-        class="room-thumb"
-        src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=150&q=80&auto=format&fit=crop"
-        alt="Masters Bedroom"
-      />
-      <div class="room-info">
-        <h2>Masters Bedroom</h2>
-        <p>5m x 6m &bull; 30m&sup2;</p>
-      </div>
-      <div class="room-actions">
-        <ion-icon name="create-outline"></ion-icon>
-        <ion-icon name="trash-outline"></ion-icon>
-      </div>
-    </div>
-
-    <div class="room-card">
-      <div class="drag-dots">
-        <span></span><span></span><span></span><span></span><span></span
-        ><span></span>
-      </div>
-      <img
-        class="room-thumb"
-        src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=150&q=80&auto=format&fit=crop"
-        alt="Bathroom"
-      />
-      <div class="room-info">
-        <h2>Bathroom</h2>
-        <p>3m x 3m &bull; 9m&sup2;</p>
-      </div>
-      <div class="room-actions">
-        <ion-icon name="create-outline"></ion-icon>
-        <ion-icon name="trash-outline"></ion-icon>
-      </div>
-    </div>
-
-    <div style="height: 80px"></div>
   </div>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button class="custom-fab">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+  <!-- FAB Button -->
+ 
 </ion-content>

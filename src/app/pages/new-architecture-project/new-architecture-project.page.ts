@@ -107,7 +107,7 @@ export class NewArchitectureProjectPage {
    
     // Navigate to 3D house view page
     setTimeout(() => {
-      this.navCtrl.navigateForward('/3d-house-view', {
+      this.navCtrl.navigateForward('/room-list', {
         queryParams: { houseData: JSON.stringify(houseData) },
       });
     }, 500);

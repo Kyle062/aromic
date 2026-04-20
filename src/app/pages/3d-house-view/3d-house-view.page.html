@@ -1,14 +1,15 @@
 <ion-content [fullscreen]="true" scrollY="false">
   <div class="main-wrapper">
+    <!-- Toolbar -->
     <div class="custom-toolbar">
       <div class="left-icons">
         <ion-button fill="clear" (click)="goBack()">
           <ion-icon name="arrow-back-outline"></ion-icon>
         </ion-button>
-        <ion-button fill="clear">
+        <ion-button fill="clear" (click)="toggleAutoRotate()">
           <ion-icon name="arrow-undo-outline"></ion-icon>
         </ion-button>
-        <ion-button fill="clear">
+        <ion-button fill="clear" (click)="resetView()">
           <ion-icon name="refresh-outline"></ion-icon>
         </ion-button>
       </div>
@@ -19,21 +20,42 @@
       </div>
     </div>
 
-    <div class="image-viewport">
-      <img src="../../../assets/3d-image.png" alt="3D Model" />
-    </div>
+    <!-- 3D Viewport -->
+    <div #canvasContainer class="image-viewport"></div>
 
+    <!-- Controls Panel -->
     <div class="action-panel">
       <div class="toggle-row">
-        <button class="btn-toggle active">AUTO GENERATE</button>
-        <button class="btn-toggle disabled">MANUAL ADJUST</button>
+        <button
+          class="btn-toggle"
+          [class.active]="isAutoGenerate"
+          (click)="isAutoGenerate = true"
+        >
+          AUTO GENERATE
+        </button>
+        <button
+          class="btn-toggle"
+          [class.active]="!isAutoGenerate"
+          (click)="isAutoGenerate = false"
+        >
+          MANUAL ADJUST
+        </button>
       </div>
 
-      <button class="btn-wide secondary">GENERATE DESIGN</button>
+      <button
+        class="btn-wide secondary"
+        (click)="generateDesign()"
+        [disabled]="isGenerating"
+      >
+        <ion-spinner *ngIf="isGenerating" name="dots"></ion-spinner>
+        <span *ngIf="!isGenerating">GENERATE DESIGN</span>
+      </button>
 
       <div class="final-row">
         <button class="btn-half primary" (click)="goToHome()">ACCEPT</button>
-        <button class="btn-half secondary">RETRY</button>
+        <button class="btn-half secondary" (click)="retryGeneration()">
+          RETRY
+        </button>
       </div>
 
       <div class="footer-icon">
