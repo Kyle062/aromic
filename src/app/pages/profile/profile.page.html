@@ -4,147 +4,142 @@
     <img src="../../assets/aromic background.png" alt="background" />
   </div>
 
-  <!-- Main Overlay Content -->
-  <div class="main-overlay">
-    <!-- Header -->
-    <div class="top-header">
-      <ion-back-button
-        defaultHref="/home"
-        text=""
-        icon="arrow-back"
-        class="back-icon"
-      ></ion-back-button>
-      <h2 class="page-title">Profile</h2>
-      <div class="menu-icon" (click)="openMenu()">
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <div class="top-logo">
+        <img src="../../assets/homepageImages/logo.png" alt="Aromic" />
+      </div>
+      <div class="top-menu" (click)="openMenu()">
         <ion-icon name="menu-outline"></ion-icon>
       </div>
     </div>
 
-    <!-- Glass Container -->
-    <div class="glass-container">
-      <!-- Profile Header -->
-      <div class="profile-header">
-        <div class="profile-avatar">
-          <img src="../../assets/homepageImages/profile.png" alt="Profile" />
-        </div>
-        <div class="profile-info">
-          <h1 class="profile-name">{{ userProfile.name }}</h1>
-          <p class="profile-details">Designer ID: {{ userProfile.designerId }}</p>
-          <p class="profile-email">{{ userProfile.email }}</p>
-        </div>
+    <!-- Profile Header Card -->
+    <div class="profile-card">
+      <div class="profile-avatar">
+        <img src="../../assets/homepageImages/profile.png" alt="Profile" />
       </div>
-
-      <!-- Stats Cards -->
-      <div class="stats-container">
-        <div class="stat-card" (click)="navigateTo('projects1')">
-          <div class="stat-image">
-            <img src="assets/projects-thumb.jpg" alt="Projects" />
-          </div>
-          <div class="stat-info">
-            <span class="stat-number">{{ stats.projects }}</span>
-            <span class="stat-label">Projects</span>
-          </div>
-        </div>
-
-        <div class="stat-card" (click)="navigateTo('room-list')">
-          <div class="stat-image">
-            <img src="assets/rooms-thumb.jpg" alt="Rooms" />
-          </div>
-          <div class="stat-info">
-            <span class="stat-number">{{ stats.rooms }}</span>
-            <span class="stat-label">Rooms</span>
-          </div>
-        </div>
-
-        <div class="stat-card">
-          <div class="stat-image">
-            <img src="assets/saved-thumb.jpg" alt="Saved" />
-          </div>
-          <div class="stat-info">
-            <span class="stat-number">{{ stats.saved }}</span>
-            <span class="stat-label">Saved</span>
-          </div>
-        </div>
+      <div class="profile-info">
+        <h1 class="profile-name">{{ userProfile.name }}</h1>
+        <p class="profile-id">Designer ID: {{ userProfile.designerId }}</p>
+        <p class="profile-email">{{ userProfile.email }}</p>
       </div>
-
-      <!-- Menu Items -->
-      <div class="menu-container">
-        <!-- First Group -->
-        <div class="menu-group">
-          <div class="menu-item" (click)="navigateTo('projects1')">
-            <div class="menu-icon-wrapper">
-              <ion-icon name="briefcase-outline"></ion-icon>
-            </div>
-            <span class="menu-label">My Projects</span>
-            <ion-icon name="chevron-forward-outline" class="chevron"></ion-icon>
-          </div>
-
-          <div class="menu-item" (click)="showToast('Saved Designs')">
-            <div class="menu-icon-wrapper">
-              <ion-icon name="bookmark-outline"></ion-icon>
-            </div>
-            <span class="menu-label">Saved Designs</span>
-            <ion-icon name="chevron-forward-outline" class="chevron"></ion-icon>
-          </div>
-
-          <div class="menu-item" (click)="navigateTo('photo-design')">
-            <div class="menu-icon-wrapper">
-              <ion-icon name="images-outline"></ion-icon>
-            </div>
-            <span class="menu-label">My Photo Designs</span>
-            <ion-icon name="chevron-forward-outline" class="chevron"></ion-icon>
-          </div>
-
-          <div class="menu-item" (click)="navigateTo('materials-library')">
-            <div class="menu-icon-wrapper favorite">
-              <ion-icon name="star-outline"></ion-icon>
-            </div>
-            <span class="menu-label">Favorite Materials</span>
-            <ion-icon name="chevron-forward-outline" class="chevron"></ion-icon>
-          </div>
-        </div>
-
-        <!-- Second Group -->
-        <div class="menu-group">
-          <div class="menu-item" (click)="showToast('Settings')">
-            <div class="menu-icon-wrapper">
-              <ion-icon name="settings-outline"></ion-icon>
-            </div>
-            <span class="menu-label">Settings</span>
-            <ion-icon name="chevron-forward-outline" class="chevron"></ion-icon>
-          </div>
-
-          <div class="menu-item" (click)="showToast('Help & Support')">
-            <div class="menu-icon-wrapper">
-              <ion-icon name="headset-outline"></ion-icon>
-            </div>
-            <span class="menu-label">Help & Support</span>
-            <ion-icon name="chevron-forward-outline" class="chevron"></ion-icon>
-          </div>
-
-          <div class="menu-item" (click)="showToast('About Aromic')">
-            <div class="menu-icon-wrapper">
-              <ion-icon name="information-circle-outline"></ion-icon>
-            </div>
-            <span class="menu-label">About Aromic</span>
-            <ion-icon name="chevron-forward-outline" class="chevron"></ion-icon>
-          </div>
-        </div>
-
-        <!-- Logout -->
-        <div class="menu-group logout-group">
-          <div class="menu-item logout-item" (click)="onLogout()">
-            <div class="menu-icon-wrapper">
-              <ion-icon name="log-out-outline"></ion-icon>
-            </div>
-            <span class="menu-label">Logout</span>
-            <ion-icon name="chevron-forward-outline" class="chevron"></ion-icon>
-          </div>
-        </div>
-      </div>
-
-      <!-- Bottom Spacing -->
-      <div style="height: 80px"></div>
     </div>
+
+    <!-- Stats Cards -->
+    <div class="stats-wrapper">
+      <div class="stat-card" (click)="navigateTo('projects1')">
+        <div class="stat-img">
+          <img src="../../../assets/pro1.png" alt="Projects" />
+        </div>
+        <div class="stat-content">
+          <span class="stat-num">{{ stats.projects }}</span>
+          <span class="stat-txt">Projects</span>
+        </div>
+      </div>
+
+      <div class="stat-card" (click)="navigateTo('room-list')">
+        <div class="stat-img">
+          <img src="../../../assets/pro2.png" alt="Rooms" />
+        </div>
+        <div class="stat-content">
+          <span class="stat-num">{{ stats.rooms }}</span>
+          <span class="stat-txt">Rooms</span>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-img">
+          <img src="../../../assets/pro3.png" alt="Saved" />
+        </div>
+        <div class="stat-content">
+          <span class="stat-num">{{ stats.saved }}</span>
+          <span class="stat-txt">Saved</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Menu Groups -->
+     <div class="glass-2">
+    <div class="menu-wrapper">
+      <!-- First Menu Group -->
+      <div class="menu-box">
+        <div class="menu-row" (click)="navigateTo('projects1')">
+          <div class="menu-left">
+            <ion-icon name="briefcase-outline" class="menu-ico"></ion-icon>
+            <span class="menu-text">My Projects</span>
+          </div>
+          <ion-icon name="chevron-forward-outline" class="arrow"></ion-icon>
+        </div>
+
+        <div class="menu-row" (click)="showToast('Saved Designs')">
+          <div class="menu-left">
+            <ion-icon name="bookmark-outline" class="menu-ico"></ion-icon>
+            <span class="menu-text">Saved Designs</span>
+          </div>
+          <ion-icon name="chevron-forward-outline" class="arrow"></ion-icon>
+        </div>
+
+        <div class="menu-row" (click)="navigateTo('photo-design')">
+          <div class="menu-left">
+            <ion-icon name="images-outline" class="menu-ico"></ion-icon>
+            <span class="menu-text">My Photo Designs</span>
+          </div>
+          <ion-icon name="chevron-forward-outline" class="arrow"></ion-icon>
+        </div>
+
+        <div class="menu-row" (click)="navigateTo('materials-library')">
+          <div class="menu-left">
+            <ion-icon name="star-outline" class="menu-ico favorite-ico"></ion-icon>
+            <span class="menu-text">Favorite Materials</span>
+          </div>
+          <ion-icon name="chevron-forward-outline" class="arrow"></ion-icon>
+        </div>
+      </div>
+
+      <!-- Second Menu Group -->
+      <div class="menu-box">
+        <div class="menu-row" (click)="showToast('Settings')">
+          <div class="menu-left">
+            <ion-icon name="settings-outline" class="menu-ico"></ion-icon>
+            <span class="menu-text">Settings</span>
+          </div>
+          <ion-icon name="chevron-forward-outline" class="arrow"></ion-icon>
+        </div>
+
+        <div class="menu-row" (click)="showToast('Help & Support')">
+          <div class="menu-left">
+            <ion-icon name="headset-outline" class="menu-ico"></ion-icon>
+            <span class="menu-text">Help & Support</span>
+          </div>
+          <ion-icon name="chevron-forward-outline" class="arrow"></ion-icon>
+        </div>
+
+        <div class="menu-row" (click)="showToast('About Aromic')">
+          <div class="menu-left">
+            <ion-icon name="information-circle-outline" class="menu-ico"></ion-icon>
+            <span class="menu-text">About Aromic</span>
+          </div>
+          <ion-icon name="chevron-forward-outline" class="arrow"></ion-icon>
+        </div>
+      </div>
+
+      <!-- Logout -->
+      <div class="menu-box logout-box">
+        <div class="menu-row" (click)="onLogout()">
+          <div class="menu-left">
+            <ion-icon name="log-out-outline" class="menu-ico logout-ico"></ion-icon>
+            <span class="menu-text logout-text">Logout</span>
+          </div>
+          <ion-icon name="chevron-forward-outline" class="arrow"></ion-icon>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- Bottom Spacing -->
+    <div class="bottom-space"></div>
   </div>
 </ion-content>

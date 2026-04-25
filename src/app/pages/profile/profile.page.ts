@@ -92,7 +92,7 @@ export class ProfilePage implements OnInit {
     
     const toast = await this.toastController.create({
       message: 'Logged out successfully',
-      duration: 2000,
+      duration: 1000,
       position: 'bottom',
       color: 'dark',
     });

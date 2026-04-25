@@ -91,7 +91,7 @@ export class LoginPage implements OnInit {
       // Navigate to home page
       setTimeout(() => {
         this.router.navigate(['/home']);
-      }, 1000);
+      }, 100);
     } else {
       await this.showToast(result.message, 'danger');
     }
