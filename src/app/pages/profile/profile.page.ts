@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { 
   IonContent, 
-  IonHeader, 
-  IonTitle, 
-  IonToolbar,
-  IonIcon 
+  IonIcon,
+  IonBackButton,
+  ToastController
 } from '@ionic/angular/standalone';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';  // ✅ Fixed path
 import { addIcons } from 'ionicons';
 import { 
   menuOutline,
@@ -19,7 +20,8 @@ import {
   headsetOutline,
   informationCircleOutline,
   logOutOutline,
-  chevronForwardOutline
+  chevronForwardOutline,
+  arrowBack
 } from 'ionicons/icons';
 
 @Component({
@@ -27,7 +29,13 @@ import {
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon]
+  imports: [
+    IonContent,
+    IonIcon,
+    IonBackButton,
+    CommonModule,
+    FormsModule
+  ]
 })
 export class ProfilePage implements OnInit {
   userProfile = {
@@ -43,7 +51,11 @@ export class ProfilePage implements OnInit {
     saved: 12
   };
 
-  constructor() {
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private toastController: ToastController
+  ) {
     addIcons({
       menuOutline,
       briefcaseOutline,
@@ -54,20 +66,50 @@ export class ProfilePage implements OnInit {
       headsetOutline,
       informationCircleOutline,
       logOutOutline,
-      chevronForwardOutline
+      chevronForwardOutline,
+      arrowBack
     });
   }
 
   ngOnInit() {
+    const currentUser = this.authService.getCurrentUser();
+    if (currentUser) {
+      this.userProfile.name = currentUser.username;
+      this.userProfile.email = currentUser.email;
+    }
   }
 
-  onMenuItemClick(item: string) {
-    console.log('Clicked:', item);
-    // Add navigation or action logic here
+  openMenu() {
+    console.log('Menu opened');
   }
 
-  onLogout() {
-    console.log('Logout clicked');
-    // Add logout logic here
+  navigateTo(page: string) {
+    this.router.navigate([`/${page}`]);
+  }
+
+  async onLogout() {
+    this.authService.logout();
+    
+    const toast = await this.toastController.create({
+      message: 'Logged out successfully',
+      duration: 2000,
+      position: 'bottom',
+      color: 'dark',
+    });
+    await toast.present();
+
+    setTimeout(() => {
+      this.router.navigate(['/login']);
+    }, 1000);
+  }
+
+  async showToast(message: string) {
+    const toast = await this.toastController.create({
+      message: `${message} - Coming Soon`,
+      duration: 2000,
+      position: 'bottom',
+      color: 'dark',
+    });
+    await toast.present();
   }
 }
