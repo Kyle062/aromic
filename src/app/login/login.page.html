@@ -6,26 +6,32 @@
   href="https://fonts.googleapis.com/css2?family=Lusitana:wght@400;700&display=swap"
   rel="stylesheet"
 />
+
 <ion-content [fullscreen]="true">
   <div class="login-wrapper">
     <div class="glass-card">
+      <!-- Header Section -->
       <div class="header-section">
-        <img src="assets/aromic logo.png" class="logo" alt="Aromic Logo" />
+        <div class="logo-container">
+          <img src="assets/aromic logo.png" class="logo-icon" alt="Aromic Logo" />
+        </div>
         <p class="subtitle">Architecture & Interior Design</p>
         <hr class="line-bottom" />
       </div>
+
       <h2 class="welcome-text">Welcome back to Your Studio!</h2>
       <p class="instr-text">
         Enter your credentials to continue your design journey
       </p>
 
+      <!-- Form Container -->
       <div class="form-container">
         <div class="input-group">
-          <label>Email/ Username:</label>
+          <label>Email/ Phone Number:</label>
           <ion-input
             type="text"
             [(ngModel)]="identifier"
-            placeholder="admin@aromic.com"
+            placeholder="Lillia110605@gmail.com"
             class="custom-input"
           ></ion-input>
         </div>
@@ -55,8 +61,10 @@
             [(ngModel)]="rememberMe"
             labelPlacement="end"
             justify="start"
-            >Remember me</ion-checkbox
+            class="custom-checkbox"
           >
+            <span class="checkbox-label">Remember me</span>
+          </ion-checkbox>
         </div>
 
         <ion-button (click)="login()" class="login-btn" expand="block">
@@ -71,23 +79,24 @@
 
         <div class="social-auth">
           <img
-            src="../../assets/icon/google.png"
+            src="assets/icon/google.png"
             alt="Google"
-            class="social-icon google"
+            class="social-icon"
           />
           <img
-            src="../../assets/icon/facebook.png"
+            src="assets/icon/facebook.png"
             alt="Facebook"
-            class="social-icon facebook"
+            class="social-icon"
           />
         </div>
 
         <p class="signup-prompt">
-          Doesn't have an account? <a routerLink="/signup">Sign up</a>
+          Doesn't have an account? <a routerLink="/signup" class="signup-link">Sign up</a>
         </p>
       </div>
     </div>
 
+    <!-- Footer Section -->
     <div class="footer-section">
       <div class="pagination-dots">
         <span class="dot"></span>
@@ -95,6 +104,17 @@
         <span class="dot"></span>
       </div>
       <p class="luxury-text">Crafting Spaces. Defining Luxury.</p>
+      
+      <div class="bottom-section">
+        <p class="bottom-text">
+          Already have an account? <a class="login-link">Log in</a>
+        </p>
+        <div class="bottom-socials">
+          <ion-icon name="logo-facebook"></ion-icon>
+          <ion-icon name="logo-instagram"></ion-icon>
+          <ion-icon name="logo-linkedin"></ion-icon>
+        </div>
+      </div>
     </div>
   </div>
 </ion-content>
