@@ -37,7 +37,7 @@ export class AuthService {
       this.users = [defaultAdmin];
       this.saveUsers();
       console.log(
-        '✅ Default admin account created (username: admin, password: 123456)',
+        '✅ Default admin account created (username: admin, password: 12345)',
       );
     }
   }

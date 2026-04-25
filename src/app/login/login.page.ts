@@ -62,10 +62,7 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
-    // Check if user is already logged in
-    if (this.authService.isLoggedIn()) {
-      this.router.navigate(['/home']);
-    }
+    
   }
 
   togglePassword() {
