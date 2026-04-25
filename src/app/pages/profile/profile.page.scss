@@ -120,8 +120,8 @@ ion-content {
     border: 3px solid rgba(255, 255, 255, 0.8);
 
     img {
-      width: 100%;
-      height: 100%;
+      width: 115%;
+      height: 115%;
       object-fit: cover;
     }
   }
@@ -299,8 +299,8 @@ ion-content {
 @media (max-width: 375px) {
   .profile-header {
     .profile-avatar {
-      width: 68px;
-      height: 68px;
+      width: 100px;
+      height: 100px;
     }
 
     .profile-info .profile-name {
