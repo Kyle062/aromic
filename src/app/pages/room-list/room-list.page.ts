@@ -37,8 +37,6 @@ interface Room {
   imports: [
     IonContent,
     IonIcon,
-    IonFab,
-    IonFabButton,
     IonBackButton,
     CommonModule,
     FormsModule,

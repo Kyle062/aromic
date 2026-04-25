@@ -1,0 +1,273 @@
+ion-content {
+  --background: linear-gradient(180deg, #f5f0e8 0%, #faf8f5 100%);
+}
+
+.profile-content {
+  --padding-top: 0;
+  --padding-bottom: 0;
+}
+
+/* Top Bar */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  position: relative;
+  z-index: 10;
+
+  .logo {
+    img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+    }
+  }
+
+  .menu-icon {
+    ion-icon {
+      font-size: 24px;
+      color: #333;
+      cursor: pointer;
+    }
+  }
+}
+
+/* Profile Header */
+.profile-header {
+  display: flex;
+  align-items: center;
+  padding: 0 20px 24px;
+  gap: 16px;
+
+  .profile-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 3px solid #fff;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .profile-info {
+    flex: 1;
+
+    .profile-name {
+      font-family: 'Albert Sans', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin: 0 0 4px 0;
+      line-height: 1.2;
+    }
+
+    .profile-details {
+      font-family: 'Lusitana', serif;
+      font-size: 12px;
+      color: #666;
+      margin: 0 0 2px 0;
+    }
+
+    .profile-email {
+      font-family: 'Lusitana', serif;
+      font-size: 12px;
+      color: #999;
+      margin: 0;
+    }
+  }
+}
+
+/* Stats Container */
+.stats-container {
+  display: flex;
+  gap: 12px;
+  padding: 0 20px 28px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.stat-card {
+  flex: 1;
+  min-width: 100px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(10px);
+  transition: transform 0.2s ease;
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  .stat-image {
+    width: 100%;
+    height: 70px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .stat-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 8px;
+    gap: 4px;
+
+    .stat-number {
+      font-family: 'Albert Sans', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #1a1a1a;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-family: 'Lusitana', serif;
+      font-size: 12px;
+      color: #666;
+      font-weight: 400;
+    }
+  }
+}
+
+/* Menu Container */
+.menu-container {
+  padding: 0 20px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.menu-group {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(10px);
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  gap: 16px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:active {
+    background: rgba(0, 0, 0, 0.03);
+  }
+
+  .menu-icon-wrapper {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.05);
+
+    ion-icon {
+      font-size: 20px;
+      color: #333;
+    }
+
+    &.favorite {
+      background: rgba(255, 193, 7, 0.15);
+
+      ion-icon {
+        color: #ffc107;
+      }
+    }
+  }
+
+  .menu-label {
+    flex: 1;
+    font-family: 'Albert Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: #1a1a1a;
+  }
+
+  .chevron {
+    font-size: 20px;
+    color: #999;
+  }
+}
+
+.logout-group {
+  .menu-item {
+    .menu-icon-wrapper {
+      background: rgba(244, 67, 54, 0.1);
+
+      ion-icon {
+        color: #f44336;
+      }
+    }
+
+    .menu-label {
+      color: #f44336;
+    }
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 375px) {
+  .profile-header {
+    .profile-avatar {
+      width: 64px;
+      height: 64px;
+    }
+
+    .profile-info {
+      .profile-name {
+        font-size: 20px;
+      }
+    }
+  }
+
+  .stat-card {
+    min-width: 90px;
+
+    .stat-image {
+      height: 60px;
+    }
+
+    .stat-info {
+      .stat-number {
+        font-size: 20px;
+      }
+
+      .stat-label {
+        font-size: 11px;
+      }
+    }
+  }
+}
+
+/* Smooth scrolling */
+ion-content {
+  --overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}

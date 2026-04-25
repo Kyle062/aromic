@@ -1,13 +1,132 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>profile</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="profile-content">
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="logo">
+      <img src="../../../assets/aromic background.png" alt="Aromic" />
+    </div>
+    <div class="menu-icon">
+      <ion-icon name="menu-outline"></ion-icon>
+    </div>
+  </div>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">profile</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+  <!-- Profile Header -->
+  <div class="profile-header">
+    <div class="profile-avatar">
+      <img src="../../../assets/profile-avatar.jpg" alt="Profile" />
+    </div>
+    <div class="profile-info">
+      <h1 class="profile-name">Kylla Jen B.</h1>
+      <p class="profile-details">Designer ID: 2045678901</p>
+      <p class="profile-email">kyllajen.b@gmail.com</p>
+    </div>
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="stats-container">
+    <div class="stat-card">
+      <div class="stat-image">
+        <img src="assets/projects-thumb.jpg" alt="Projects" />
+      </div>
+      <div class="stat-info">
+        <span class="stat-number">5</span>
+        <span class="stat-label">Projects</span>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-image">
+        <img src="assets/rooms-thumb.jpg" alt="Rooms" />
+      </div>
+      <div class="stat-info">
+        <span class="stat-number">28</span>
+        <span class="stat-label">Rooms</span>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-image">
+        <img src="assets/saved-thumb.jpg" alt="Saved" />
+      </div>
+      <div class="stat-info">
+        <span class="stat-number">12</span>
+        <span class="stat-label">Saved</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Menu Items -->
+  <div class="menu-container">
+    <!-- First Group -->
+    <div class="menu-group">
+      <div class="menu-item">
+        <div class="menu-icon-wrapper">
+          <ion-icon name="briefcase-outline"></ion-icon>
+        </div>
+        <span class="menu-label">My Projects</span>
+        <ion-icon name="chevron-forward-outline" class="chevron"></ion-icon>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-icon-wrapper">
+          <ion-icon name="bookmark-outline"></ion-icon>
+        </div>
+        <span class="menu-label">Saved Designs</span>
+        <ion-icon name="chevron-forward-outline" class="chevron"></ion-icon>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-icon-wrapper">
+          <ion-icon name="images-outline"></ion-icon>
+        </div>
+        <span class="menu-label">My Photo Designs</span>
+        <ion-icon name="chevron-forward-outline" class="chevron"></ion-icon>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-icon-wrapper favorite">
+          <ion-icon name="star-outline"></ion-icon>
+        </div>
+        <span class="menu-label">Favorite Materials</span>
+        <ion-icon name="chevron-forward-outline" class="chevron"></ion-icon>
+      </div>
+    </div>
+
+    <!-- Second Group -->
+    <div class="menu-group">
+      <div class="menu-item">
+        <div class="menu-icon-wrapper">
+          <ion-icon name="settings-outline"></ion-icon>
+        </div>
+        <span class="menu-label">Settings</span>
+        <ion-icon name="chevron-forward-outline" class="chevron"></ion-icon>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-icon-wrapper">
+          <ion-icon name="headset-outline"></ion-icon>
+        </div>
+        <span class="menu-label">Help & Support</span>
+        <ion-icon name="chevron-forward-outline" class="chevron"></ion-icon>
+      </div>
+
+      <div class="menu-item">
+        <div class="menu-icon-wrapper">
+          <ion-icon name="information-circle-outline"></ion-icon>
+        </div>
+        <span class="menu-label">About Aromic</span>
+        <ion-icon name="chevron-forward-outline" class="chevron"></ion-icon>
+      </div>
+    </div>
+
+    <!-- Logout -->
+    <div class="menu-group logout-group">
+      <div class="menu-item logout-item">
+        <div class="menu-icon-wrapper">
+          <ion-icon name="log-out-outline"></ion-icon>
+        </div>
+        <span class="menu-label">Logout</span>
+        <ion-icon name="chevron-forward-outline" class="chevron"></ion-icon>
+      </div>
+    </div>
+  </div>
+</ion-content>  
