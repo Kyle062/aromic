@@ -122,5 +122,9 @@ export const routes: Routes = [
     path: 'about',
     loadComponent: () => import('./pages/about/about.page').then( m => m.AboutPage)
   },
+  {
+    path: 'my-photo-design',
+    loadComponent: () => import('./pages/my-photo-design/my-photo-design.page').then( m => m.MyPhotoDesignPage)
+  },
 
 ];
