@@ -1,9 +1,8 @@
-// Remove default ionic background
 .page-content {
   --background: transparent;
 }
 
-// Background Image Setup
+// Background Image
 .background-container {
   position: fixed;
   top: 0;
@@ -16,67 +15,74 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.9;
   }
 }
 
-// Top Nav (Logo and Hamburger Menu)
+// Top Nav
 .top-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 24px;
-  height: 90px;
+  padding: 50px 24px 10px;
 
   .logo-container img {
-    height: 30px;
+    height: 32px;
     width: auto;
     object-fit: contain;
   }
 
   .menu-icon {
-    font-size: 32px;
-    color: #fff; // Adjust to #000 depending on your background image brightness
+    font-size: 28px;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 8px;
+    border-radius: 50%;
+    backdrop-filter: blur(10px);
   }
 }
 
-// The White/Glass Bottom Sheet
+// Main Container
 .main-container {
-  background: rgba(248, 248, 248, 0.92); // Semi-transparent off-white
-  backdrop-filter: blur(15px); // Glassmorphism effect
-  -webkit-backdrop-filter: blur(15px);
-  border-radius: 35px 35px 0 0;
-  min-height: calc(100vh - 90px);
-  padding: 30px 24px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border-radius: 40px 40px 0 0;
+  min-height: calc(100vh - 100px);
+  margin-top: 20px;
+  padding: 25px 20px 40px;
   display: flex;
   flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
 }
 
-// Inner Header
+// Container Header
 .container-header {
   display: flex;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 
   .back-icon {
-    font-size: 24px;
-    color: #000;
-    width: 24px;
-    cursor: pointer;
+    --color: #333;
+    --icon-font-size: 22px;
+    width: 32px;
+    height: 32px;
   }
 
   .page-title {
     flex: 1;
     text-align: center;
-    font-size: 19px;
+    font-size: 18px;
     font-weight: 800;
     margin: 0;
-    color: #111;
-    letter-spacing: 0.5px;
+    color: #1a1a1a;
   }
 
   .spacer {
-    width: 24px; // Balances the flex layout for perfect centering
+    width: 32px;
   }
 }
 
@@ -84,14 +90,15 @@
 .search-container {
   display: flex;
   align-items: center;
-  background: #e9e9e9;
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 14px;
   padding: 12px 16px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
 
   .search-icon {
     color: #888;
-    margin-right: 12px;
+    margin-right: 10px;
     font-size: 20px;
   }
 
@@ -99,38 +106,43 @@
     border: none;
     background: transparent;
     width: 100%;
-    font-size: 13px;
+    font-size: 14px;
     color: #333;
     outline: none;
-    font-weight: 500;
 
     &::placeholder {
       color: #a0a0a0;
     }
   }
+
+  .clear-icon {
+    color: #999;
+    font-size: 20px;
+    cursor: pointer;
+  }
 }
 
-// 2-Column Grid Layout
+// 2-Column Grid
 .materials-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  padding-bottom: 40px; // Padding for scroll clearance at bottom
+  gap: 14px;
+  padding-bottom: 20px;
 }
 
-// Individual Product Card
+// Product Card
 .material-card {
   background: #ffffff;
-  border-radius: 16px;
+  border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05); // Soft drop shadow
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
   display: flex;
   flex-direction: column;
 
   .image-wrapper {
     width: 100%;
-    aspect-ratio: 1 / 1; // Keeps images perfectly square
-    background-color: #f0f0f0;
+    aspect-ratio: 1 / 1;
+    background-color: #f5f5f5;
 
     .product-image {
       width: 100%;
@@ -140,7 +152,7 @@
   }
 
   .card-content {
-    padding: 12px;
+    padding: 10px 12px 12px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -149,13 +161,13 @@
     .text-group {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 3px;
 
       .product-name {
-        font-size: 11px;
+        font-size: 14px;
         font-weight: 800;
         margin: 0;
-        color: #222;
+        color: #1a1a1a;
         line-height: 1.2;
       }
 
@@ -163,15 +175,47 @@
         font-size: 11px;
         color: #666;
         margin: 0;
-        font-weight: 500;
+        font-weight: 600;
       }
     }
 
-    // Red Heart Icon Styling
     .favorite-icon {
-      font-size: 18px;
-      color: #ff3b30; // Bright red as requested
-      margin-bottom: 2px;
+      font-size: 20px;
+      color: #ff3b30;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+
+      &:active {
+        transform: scale(1.2);
+      }
     }
+  }
+}
+
+// Empty State
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+
+  ion-icon {
+    font-size: 56px;
+    color: #ccc;
+    margin-bottom: 14px;
+  }
+
+  p {
+    color: #999;
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+  }
+
+  .reset-btn {
+    background: #1a1a1a;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
   }
 }

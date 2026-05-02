@@ -1,23 +1,35 @@
 <ion-content [fullscreen]="true" class="page-content">
-  <!-- Global Background Image Placeholder -->
+  <!-- Fixed Background Image -->
   <div class="background-container">
-    <img src="assets/placeholder-bg.jpg" alt="Background" class="bg-img" />
+    <img
+      src="../../assets/aromic background.png"
+      alt="Background"
+      class="bg-img"
+    />
   </div>
 
-  <!-- Top Transparent Navigation -->
+  <!-- Top Navigation -->
   <div class="top-nav">
     <div class="logo-container">
-      <!-- Logo Image Placeholder -->
-      <img src="assets/placeholder-logo.png" alt="Logo" />
+      <img src="../../assets/homepageImages/logo.png" alt="Logo" />
     </div>
-    <ion-icon name="menu-outline" class="menu-icon"></ion-icon>
+    <ion-icon
+      name="menu-outline"
+      class="menu-icon"
+      (click)="openMenu()"
+    ></ion-icon>
   </div>
 
-  <!-- Main Rounded Content Container -->
+  <!-- Main Container -->
   <div class="main-container">
-    <!-- Custom Header inside the container -->
+    <!-- Header -->
     <div class="container-header">
-      <ion-icon name="arrow-back-outline" class="back-icon"></ion-icon>
+      <ion-back-button
+        defaultHref="/profile"
+        text=""
+        icon="arrow-back"
+        class="back-icon"
+      ></ion-back-button>
       <h1 class="page-title">Favorite Materials</h1>
       <div class="spacer"></div>
     </div>
@@ -25,13 +37,27 @@
     <!-- Search Bar -->
     <div class="search-container">
       <ion-icon name="search-outline" class="search-icon"></ion-icon>
-      <input type="text" placeholder="Find Materials..." class="search-input" />
+      <input
+        type="text"
+        [(ngModel)]="searchQuery"
+        placeholder="Find Materials..."
+        class="search-input"
+        (input)="filterMaterials()"
+      />
+      <ion-icon
+        *ngIf="searchQuery"
+        name="close-circle"
+        class="clear-icon"
+        (click)="clearSearch()"
+      ></ion-icon>
     </div>
 
-    <!-- Materials Grid Layout -->
+    <!-- Materials Grid -->
     <div class="materials-grid">
-      <div class="material-card" *ngFor="let item of favoriteMaterials">
-        <!-- Product Image Placeholder -->
+      <div
+        class="material-card"
+        *ngFor="let item of filteredMaterials; let i = index"
+      >
         <div class="image-wrapper">
           <img
             [src]="item.imgSrc"
@@ -45,10 +71,24 @@
             <h2 class="product-name">{{ item.name }}</h2>
             <p class="product-price">{{ item.price }}</p>
           </div>
-          <!-- Red Heart Icon -->
-          <ion-icon name="heart" class="favorite-icon"></ion-icon>
+          <!-- ✅ Click to unfavorite -->
+          <ion-icon
+            name="heart"
+            class="favorite-icon"
+            (click)="removeFavorite(item, i)"
+          ></ion-icon>
         </div>
       </div>
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state" *ngIf="filteredMaterials.length === 0">
+      <ion-icon name="heart-outline"></ion-icon>
+      <p *ngIf="searchQuery">No materials found</p>
+      <p *ngIf="!searchQuery">No favorite materials yet</p>
+      <button *ngIf="searchQuery" class="reset-btn" (click)="clearSearch()">
+        Clear Search
+      </button>
     </div>
   </div>
 </ion-content>
