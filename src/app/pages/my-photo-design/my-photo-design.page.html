@@ -1,23 +1,35 @@
 <ion-content [fullscreen]="true" class="page-content">
-  <!-- Global Background Image Placeholder -->
+  <!-- Fixed Background Image -->
   <div class="background-container">
-    <img src="assets/placeholder-bg.jpg" alt="Background" class="bg-img" />
+    <img
+      src="../../assets/aromic background.png"
+      alt="Background"
+      class="bg-img"
+    />
   </div>
 
-  <!-- Top Transparent Navigation -->
+  <!-- Top Navigation -->
   <div class="top-nav">
     <div class="logo-container">
-      <!-- Logo Image Placeholder -->
-      <img src="assets/placeholder-logo.png" alt="Logo" />
+      <img src="../../assets/homepageImages/logo.png" alt="Logo" />
     </div>
-    <ion-icon name="menu-outline" class="menu-icon"></ion-icon>
+    <ion-icon
+      name="menu-outline"
+      class="menu-icon"
+      (click)="openMenu()"
+    ></ion-icon>
   </div>
 
-  <!-- Main Rounded Content Container -->
+  <!-- Main Container -->
   <div class="main-container">
-    <!-- Custom Header inside the container -->
+    <!-- Header -->
     <div class="container-header">
-      <ion-icon name="arrow-back-outline" class="back-icon"></ion-icon>
+      <ion-back-button
+        defaultHref="/profile"
+        text=""
+        icon="arrow-back"
+        class="back-icon"
+      ></ion-back-button>
       <h1 class="page-title">My Photo Designs</h1>
       <div class="spacer"></div>
     </div>
@@ -25,13 +37,27 @@
     <!-- Search Bar -->
     <div class="search-container">
       <ion-icon name="search-outline" class="search-icon"></ion-icon>
-      <input type="text" placeholder="Find Design..." class="search-input" />
+      <input
+        type="text"
+        [(ngModel)]="searchQuery"
+        placeholder="Find Design..."
+        class="search-input"
+        (input)="filterDesigns()"
+      />
+      <ion-icon
+        *ngIf="searchQuery"
+        name="close-circle"
+        class="clear-icon"
+        (click)="clearSearch()"
+      ></ion-icon>
     </div>
 
     <!-- Design Cards List -->
     <div class="cards-list">
-      <div class="design-card" *ngFor="let design of designs">
-        <!-- Card Image Placeholder -->
+      <div
+        class="design-card"
+        *ngFor="let design of filteredDesigns; let i = index"
+      >
         <img [src]="design.imgSrc" alt="Design Thumbnail" class="card-image" />
 
         <div class="card-content">
@@ -41,11 +67,85 @@
           <div class="card-footer">
             <span class="category-pill">{{ design.category }}</span>
             <div class="actions">
-              <ion-icon name="create-outline"></ion-icon>
-              <ion-icon name="trash-outline"></ion-icon>
+              <ion-icon
+                name="create-outline"
+                (click)="editDesign(design, i)"
+              ></ion-icon>
+              <ion-icon
+                name="trash-outline"
+                (click)="deleteDesign(design, i)"
+              ></ion-icon>
             </div>
           </div>
         </div>
+      </div>
+
+      <!-- Empty State -->
+      <div class="empty-state" *ngIf="filteredDesigns.length === 0">
+        <ion-icon name="images-outline"></ion-icon>
+        <p>No designs found</p>
+        <button class="reset-btn" (click)="clearSearch()" *ngIf="searchQuery">
+          Clear Search
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Modal Overlay -->
+  <div class="modal-overlay" *ngIf="showEditModal" (click)="closeEditModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <h3>Edit Design</h3>
+
+      <div class="form-group">
+        <label>Title</label>
+        <input type="text" [(ngModel)]="editForm.title" class="modal-input" />
+      </div>
+
+      <div class="form-group">
+        <label>Rooms</label>
+        <input type="number" [(ngModel)]="editForm.rooms" class="modal-input" />
+      </div>
+
+      <div class="form-group">
+        <label>Floors</label>
+        <input
+          type="number"
+          [(ngModel)]="editForm.floors"
+          class="modal-input"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Category</label>
+        <select [(ngModel)]="editForm.category" class="modal-input">
+          <option value="Architecture">Architecture</option>
+          <option value="Interior">Interior</option>
+          <option value="Landscape">Landscape</option>
+        </select>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn-cancel" (click)="closeEditModal()">Cancel</button>
+        <button class="btn-save" (click)="saveEdit()">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div
+    class="modal-overlay"
+    *ngIf="showDeleteConfirm"
+    (click)="closeDeleteConfirm()"
+  >
+    <div class="modal-content confirm-modal" (click)="$event.stopPropagation()">
+      <ion-icon name="warning-outline" class="warning-icon"></ion-icon>
+      <h3>Delete Design?</h3>
+      <p>Are you sure you want to delete "{{ deleteTarget?.title }}"?</p>
+      <div class="modal-actions">
+        <button class="btn-cancel" (click)="closeDeleteConfirm()">
+          Cancel
+        </button>
+        <button class="btn-delete" (click)="confirmDelete()">Delete</button>
       </div>
     </div>
   </div>
