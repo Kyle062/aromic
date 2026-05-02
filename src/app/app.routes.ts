@@ -106,5 +106,21 @@ export const routes: Routes = [
     path: 'room-list',
     loadComponent: () => import('./pages/room-list/room-list.page').then( m => m.RoomListPage)
   },
+  {
+    path: 'favorite-materials',
+    loadComponent: () => import('./pages/favorite-materials/favorite-materials.page').then( m => m.FavoriteMaterialsPage)
+  },
+  {
+    path: 'settings',
+    loadComponent: () => import('./pages/settings/settings.page').then( m => m.SettingsPage)
+  },
+  {
+    path: 'help-support',
+    loadComponent: () => import('./pages/help-support/help-support.page').then( m => m.HelpSupportPage)
+  },
+  {
+    path: 'about',
+    loadComponent: () => import('./pages/about/about.page').then( m => m.AboutPage)
+  },
 
 ];
