@@ -8,7 +8,7 @@ import {
   ToastController
 } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';  // ✅ Fixed path
+import { AuthService } from '../../services/auth.service'; 
 import { addIcons } from 'ionicons';
 import { 
   menuOutline,
@@ -32,7 +32,6 @@ import {
   imports: [
     IonContent,
     IonIcon,
-    IonBackButton,
     CommonModule,
     FormsModule
   ]
