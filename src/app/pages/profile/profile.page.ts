@@ -6,8 +6,9 @@ import {
   IonIcon,
   ToastController,
 } from '@ionic/angular/standalone';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { filter } from 'rxjs/operators';
 import { addIcons } from 'ionicons';
 import {
   menuOutline,
@@ -21,6 +22,15 @@ import {
   chevronForwardOutline,
 } from 'ionicons/icons';
 
+interface ProfileData {
+  name: string;
+  username: string;
+  email: string;
+  phone: string;
+  designerId: string;
+  avatar: string;
+}
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
@@ -33,14 +43,17 @@ export class ProfilePage implements OnInit {
     name: 'Kylla Jen B.',
     designerId: '2045678901',
     email: 'kyllajen.b@gmail.com',
+    avatar: '../../assets/homepageImages/profile.png',
   };
 
   stats = { projects: 5, rooms: 28, saved: 12 };
 
+  private readonly PROFILE_KEY = 'aromic_profile_data';
+
   constructor(
     private router: Router,
     private authService: AuthService,
-    private toastController: ToastController
+    private toastController: ToastController,
   ) {
     addIcons({
       menuOutline,
@@ -56,10 +69,32 @@ export class ProfilePage implements OnInit {
   }
 
   ngOnInit() {
-    const user = this.authService.getCurrentUser();
-    if (user) {
-      this.userProfile.name = user.username;
-      this.userProfile.email = user.email;
+    this.loadProfile();
+
+    // ✅ Refresh profile every time user navigates back to this page
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.loadProfile();
+      });
+  }
+
+  // ✅ Load profile from localStorage (syncs with Settings)
+  loadProfile() {
+    const savedProfile = localStorage.getItem(this.PROFILE_KEY);
+    if (savedProfile) {
+      const profile: ProfileData = JSON.parse(savedProfile);
+      this.userProfile.name = profile.name || this.userProfile.name;
+      this.userProfile.email = profile.email || this.userProfile.email;
+      this.userProfile.designerId = profile.designerId || this.userProfile.designerId;
+      this.userProfile.avatar = profile.avatar || this.userProfile.avatar;
+    } else {
+      // Fallback to auth service
+      const user = this.authService.getCurrentUser();
+      if (user) {
+        this.userProfile.name = user.username;
+        this.userProfile.email = user.email;
+      }
     }
   }
 

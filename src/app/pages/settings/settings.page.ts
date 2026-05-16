@@ -160,21 +160,33 @@ export class SettingsPage implements OnInit {
   }
 
   async saveProfile() {
-    this.profileData.name = this.editForm.name;
-    this.profileData.username = this.editForm.username;
-    this.profileData.email = this.editForm.email;
-    this.profileData.phone = this.editForm.phone;
-    this.profileData.designerId = this.editForm.designerId;
-    this.showEditProfileModal = false;
+  this.profileData.name = this.editForm.name;
+  this.profileData.username = this.editForm.username;
+  this.profileData.email = this.editForm.email;
+  this.profileData.phone = this.editForm.phone;
+  this.profileData.designerId = this.editForm.designerId;
+  
+  // ✅ Save to localStorage so Profile page can read it
+  const profileToSave = {
+    name: this.profileData.name,
+    username: this.profileData.username,
+    email: this.profileData.email,
+    phone: this.profileData.phone,
+    designerId: this.profileData.designerId,
+    avatar: this.profileData.avatar,
+  };
+  localStorage.setItem('aromic_profile_data', JSON.stringify(profileToSave));
+  
+  this.showEditProfileModal = false;
 
-    const toast = await this.toastController.create({
-      message: 'Profile updated successfully!',
-      duration: 2000,
-      position: 'bottom',
-      color: 'success',
-    });
-    await toast.present();
-  }
+  const toast = await this.toastController.create({
+    message: 'Profile updated successfully!',
+    duration: 2000,
+    position: 'bottom',
+    color: 'success',
+  });
+  await toast.present();
+}
 
   changeProfilePic() {
     console.log('Change profile picture');

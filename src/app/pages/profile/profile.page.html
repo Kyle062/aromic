@@ -15,10 +15,12 @@
 
     <div class="profile-card">
       <div class="profile-avatar">
-        <img src="../../assets/homepageImages/profile.png" alt="Profile" />
+        <!-- ✅ Dynamic avatar -->
+        <img [src]="userProfile.avatar" alt="Profile" />
       </div>
       <div class="profile-info">
-        <h1 class="profile-name">Kylla Jen</h1>
+        <!-- ✅ Dynamic name, ID, email -->
+        <h1 class="profile-name">{{ userProfile.name }}</h1>
         <p class="profile-id">Designer ID: {{ userProfile.designerId }}</p>
         <p class="profile-email">{{ userProfile.email }}</p>
       </div>
@@ -67,7 +69,6 @@
             <ion-icon name="chevron-forward-outline" class="arrow"></ion-icon>
           </div>
 
-          <!-- ✅ CHANGED: photo-design → my-photo-design -->
           <div class="menu-row" (click)="navigateTo('my-photo-design')">
             <div class="menu-left">
               <ion-icon name="images-outline" class="menu-ico"></ion-icon>
