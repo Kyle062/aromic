@@ -17,7 +17,11 @@ export class Splash2Page implements OnInit, OnDestroy {
   constructor(private router: Router) {}
 
   ngOnInit() {
-    const MIN_DISPLAY_TIME = 3000; 
+    // ✅ Check if this splash is shown after login
+    const isLoginSuccess = sessionStorage.getItem('login_success');
+    const loginUser = sessionStorage.getItem('login_user');
+
+    const MIN_DISPLAY_TIME = 3000;
 
     this.timeoutId = setTimeout(() => {
       const container = document.querySelector('.splash-container');
@@ -26,7 +30,15 @@ export class Splash2Page implements OnInit, OnDestroy {
       }
 
       setTimeout(() => {
-        this.router.navigate(['/splash']);
+        // ✅ If coming from login, go to home. Otherwise go to main splash
+        if (isLoginSuccess === 'true') {
+          // Clear the flag
+          sessionStorage.removeItem('login_success');
+          sessionStorage.removeItem('login_user');
+          this.router.navigate(['/home']);
+        } else {
+          this.router.navigate(['/splash']);
+        }
       }, 200);
     }, MIN_DISPLAY_TIME);
   }

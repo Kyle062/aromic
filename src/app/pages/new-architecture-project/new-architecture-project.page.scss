@@ -1,6 +1,7 @@
 :host {
   --ion-safe-area-left: 0;
   --ion-safe-area-right: 0;
+  --ion-safe-area-bottom: 0;
 }
 
 ion-content {
@@ -41,21 +42,25 @@ ion-content {
   position: relative;
 
   .back-icon {
-    --color: #000;
+    --color: #fff;
     --padding-start: 8px;
     --padding-end: 8px;
     height: 36px;
     width: 36px;
     font-size: 20px;
+    --background: rgba(0, 0, 0, 0.3);
+    --border-radius: 50%;
+    backdrop-filter: blur(10px);
 
     ion-icon {
       font-size: 20px;
+      color: #fff;
     }
   }
 
   .menu-icon {
     font-size: 24px;
-    color: #000;
+    color: #fff;
     margin-right: 10px;
   }
 
@@ -64,57 +69,59 @@ ion-content {
     text-align: center;
     font-weight: 800;
     font-size: 1.25rem;
-    color: #000;
+    color: #fff;
     line-height: 1.1;
     margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   }
 }
 
-.glass-card {
-  margin: 15px 20px;
+// Glass Container
+.glass-container {
+  margin: 20px;
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
-  border-radius: 40px;
+  border-radius: 35px;
   border: 1px solid rgba(255, 255, 255, 0.4);
   overflow: hidden;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
 
-  .card-image-header {
-    position: relative;
-    height: 180px;
+.card-image-header {
+  position: relative;
+  height: 160px;
 
-    img {
-      width: 100%;
-      height: 400%;
-      object-fit: cover;
-    }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
-    .glass-gradient-overlay {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: 70px;
-      background: linear-gradient(
-        to bottom,
-        transparent,
-        rgba(255, 255, 255, 0.3)
-      );
-      backdrop-filter: blur(5px);
-    }
+  .glass-gradient-overlay {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(255, 255, 255, 0.3)
+    );
+    backdrop-filter: blur(5px);
+  }
 
-    .room-counter {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      background: rgba(0, 0, 0, 0.75);
-      color: #fff;
-      padding: 5px 12px;
-      border-radius: 12px;
-      font-size: 0.65rem;
-      font-weight: 700;
-      backdrop-filter: blur(5px);
-    }
+  .room-counter {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    padding: 5px 12px;
+    border-radius: 12px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    backdrop-filter: blur(5px);
   }
 }
 
@@ -126,7 +133,7 @@ ion-content {
 
     label {
       display: block;
-      color: #000;
+      color: #1a1a1a;
       font-size: 0.75rem;
       font-weight: 800;
       margin-bottom: 8px;
@@ -135,17 +142,17 @@ ion-content {
 
     .custom-input-box {
       background: #fff;
-      border-radius: 15px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
-      padding: 0 15px;
-      height: 48px;
+      padding: 0 14px;
+      height: 46px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
 
       ion-icon {
         color: #444;
         font-size: 18px;
-        margin-right: 12px;
+        margin-right: 10px;
       }
 
       ion-input,
@@ -161,59 +168,52 @@ ion-content {
     .textarea-box {
       height: auto;
       padding-top: 12px;
+      padding-bottom: 4px;
     }
   }
 }
 
 .action-footer {
-  padding: 10px 20px 30px;
+  padding: 0 20px 20px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 
   button {
-    height: 58px;
-    border-radius: 35px;
+    height: 50px;
+    border-radius: 30px;
     border: none;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 700;
-    gap: 10px;
-    font-size: 0.95rem;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    gap: 8px;
+    font-size: 0.85rem;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     cursor: pointer;
 
     ion-icon {
-      font-size: 22px;
+      font-size: 20px;
     }
 
     &:active {
-      transform: scale(0.98);
+      transform: scale(0.97);
     }
   }
 
   .btn-primary-dark {
     background: #000;
     color: #fff;
-
-    &:hover {
-      background: #222;
-    }
   }
 
   .btn-primary-light {
     background: #fff;
     color: #000;
-
-    &:hover {
-      background: #f5f5f5;
-    }
   }
 }
 
-/* Toast Notification Styles */
+// Toast Notification
 .toast-container {
   position: fixed;
   top: 0;
@@ -230,7 +230,6 @@ ion-content {
 
   &.show {
     opacity: 1;
-    pointer-events: none;
   }
 
   .toast-message {

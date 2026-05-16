@@ -38,7 +38,7 @@ import {
   ],
 })
 export class LoginPage implements OnInit {
-  identifier: string = ''; // Email or username
+  identifier: string = '';
   password: string = '';
   rememberMe: boolean = false;
 
@@ -61,9 +61,7 @@ export class LoginPage implements OnInit {
     });
   }
 
-  ngOnInit() {
-    
-  }
+  ngOnInit() {}
 
   togglePassword() {
     this.showPassword = !this.showPassword;
@@ -88,10 +86,14 @@ export class LoginPage implements OnInit {
         'success',
       );
 
-      // Navigate to home page
+      // ✅ Store login success in sessionStorage so splash2 knows where to go
+      sessionStorage.setItem('login_success', 'true');
+      sessionStorage.setItem('login_user', result.user?.username || '');
+
+      // ✅ Navigate to splash2 which will auto-redirect to home
       setTimeout(() => {
-        this.router.navigate(['/home']);
-      }, 100);
+        this.router.navigate(['/splash2']);
+      }, 500);
     } else {
       await this.showToast(result.message, 'danger');
     }

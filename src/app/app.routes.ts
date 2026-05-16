@@ -52,6 +52,48 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./pages/profile/profile.page').then((m) => m.ProfilePage),
       },
+       {
+        path: 'new-architecture-project',
+        loadComponent: () =>
+          import('./pages/new-architecture-project/new-architecture-project.page').then(
+            (m) => m.NewArchitectureProjectPage,
+          ),
+      },
+        {
+          path: 'my-photo-design',
+          loadComponent: () =>
+            import('./pages/my-photo-design/my-photo-design.page').then(
+              (m) => m.MyPhotoDesignPage
+            )
+        },
+        {
+          path: 'favorite-materials',
+          loadComponent: () =>
+            import('./pages/favorite-materials/favorite-materials.page').then(
+              (m) => m.FavoriteMaterialsPage
+            )
+        },
+        {
+          path: 'settings',
+          loadComponent: () =>
+            import('./pages/settings/settings.page').then(
+              (m) => m.SettingsPage
+            )
+        },
+        {
+          path: 'help-support',
+          loadComponent: () =>
+            import('./pages/help-support/help-support.page').then(
+              (m) => m.HelpSupportPage
+            )
+        },
+        {
+          path: 'about',
+          loadComponent: () =>
+            import('./pages/about/about.page').then(
+              (m) => m.AboutPage
+            )
+        },
       {
         path: '',
         redirectTo: '/home',
@@ -102,7 +144,8 @@ export const routes: Routes = [
       import('./pages/3d-house-view/3d-house-view.page').then(
         (m) => m.ThreeDHouseViewPage,
       ),
-  },  {
+  },
+  {
     path: 'room-list',
     loadComponent: () => import('./pages/room-list/room-list.page').then( m => m.RoomListPage)
   },
