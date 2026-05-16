@@ -82,7 +82,6 @@ ion-content {
   }
 }
 
-/* Glass-2 Container - Preserved with visibility improvements */
 .glass-2 {
   background: rgba(255, 255, 255, 0.144);
   backdrop-filter: blur(25px);
@@ -174,6 +173,25 @@ ion-content {
         border-color: #1a1a1a;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       }
+    }
+  }
+
+  // ✅ Currency Selector Indicator
+  .currency-selector {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    margin-top: 10px;
+    background: rgba(255, 193, 7, 0.15);
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #666;
+
+    ion-icon {
+      font-size: 16px;
+      color: #f9a826;
     }
   }
 }

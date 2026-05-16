@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CurrencyService } from '../../services/currency.service';
 import {
   IonContent,
   IonIcon,
@@ -36,6 +37,7 @@ import {
   checkmarkCircle,
   closeOutline,
   cameraOutline,
+  cashOutline,
 } from 'ionicons/icons';
 
 @Component({
@@ -63,6 +65,7 @@ export class SettingsPage implements OnInit {
   selectedView: string = '2D Floor Plan';
   selectedTheme: string = 'Warm Cream';
   selectedQuality: string = 'High';
+  selectedCurrency: string = 'USD'; // ✅ Add currency state
 
   // Profile data
   profileData = {
@@ -105,6 +108,7 @@ export class SettingsPage implements OnInit {
   constructor(
     private router: Router,
     private toastController: ToastController,
+    private currencyService: CurrencyService, // ✅ Inject CurrencyService
   ) {
     addIcons({
       arrowBackOutline,
@@ -132,10 +136,24 @@ export class SettingsPage implements OnInit {
       checkmarkCircle,
       closeOutline,
       cameraOutline,
+      cashOutline, // ✅ Add cash icon
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // ✅ Load saved currency
+    this.selectedCurrency = this.currencyService.getSelectedCurrency();
+    // ✅ Fetch latest rates
+    this.fetchRates();
+  }
+
+  // ✅ Fetch exchange rates
+  async fetchRates() {
+    const success = await this.currencyService.fetchRates();
+    if (success) {
+      console.log('✅ Exchange rates loaded');
+    }
+  }
 
   openMenu() {}
 
@@ -160,37 +178,35 @@ export class SettingsPage implements OnInit {
   }
 
   async saveProfile() {
-  this.profileData.name = this.editForm.name;
-  this.profileData.username = this.editForm.username;
-  this.profileData.email = this.editForm.email;
-  this.profileData.phone = this.editForm.phone;
-  this.profileData.designerId = this.editForm.designerId;
-  
-  // ✅ Save to localStorage so Profile page can read it
-  const profileToSave = {
-    name: this.profileData.name,
-    username: this.profileData.username,
-    email: this.profileData.email,
-    phone: this.profileData.phone,
-    designerId: this.profileData.designerId,
-    avatar: this.profileData.avatar,
-  };
-  localStorage.setItem('aromic_profile_data', JSON.stringify(profileToSave));
-  
-  this.showEditProfileModal = false;
+    this.profileData.name = this.editForm.name;
+    this.profileData.username = this.editForm.username;
+    this.profileData.email = this.editForm.email;
+    this.profileData.phone = this.editForm.phone;
+    this.profileData.designerId = this.editForm.designerId;
 
-  const toast = await this.toastController.create({
-    message: 'Profile updated successfully!',
-    duration: 2000,
-    position: 'bottom',
-    color: 'success',
-  });
-  await toast.present();
-}
+    const profileToSave = {
+      name: this.profileData.name,
+      username: this.profileData.username,
+      email: this.profileData.email,
+      phone: this.profileData.phone,
+      designerId: this.profileData.designerId,
+      avatar: this.profileData.avatar,
+    };
+    localStorage.setItem('aromic_profile_data', JSON.stringify(profileToSave));
+
+    this.showEditProfileModal = false;
+
+    const toast = await this.toastController.create({
+      message: 'Profile updated successfully!',
+      duration: 2000,
+      position: 'bottom',
+      color: 'success',
+    });
+    await toast.present();
+  }
 
   changeProfilePic() {
     console.log('Change profile picture');
-    // In a real app, open file picker
     this.showToast('Profile picture feature coming soon');
   }
 
@@ -226,6 +242,7 @@ export class SettingsPage implements OnInit {
       case 'Default View': return this.selectedView === option;
       case 'Color Theme': return this.selectedTheme === option;
       case '3D Preview Quality': return this.selectedQuality === option;
+      case 'Currency': return this.selectedCurrency === option; // ✅ Add currency
       default: return false;
     }
   }
@@ -237,6 +254,11 @@ export class SettingsPage implements OnInit {
       case 'Default View': this.selectedView = option; break;
       case 'Color Theme': this.selectedTheme = option; break;
       case '3D Preview Quality': this.selectedQuality = option; break;
+      case 'Currency': // ✅ Add currency handling
+        this.selectedCurrency = option;
+        this.currencyService.setSelectedCurrency(option);
+        this.currencyService.fetchRates();
+        break;
     }
     this.closeSelectModal();
   }

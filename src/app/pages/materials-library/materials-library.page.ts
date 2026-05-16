@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ModalController } from '@ionic/angular';
+import { CurrencyService } from '../../services/currency.service';
 import { addIcons } from 'ionicons';
 import {
   arrowBack,
@@ -37,12 +38,13 @@ interface Material {
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule],
 })
-export class MaterialsLibraryPage {
+export class MaterialsLibraryPage implements OnInit {
   searchQuery: string = '';
   activeFilter: string = 'all';
   showToast: boolean = false;
   toastMessage: string = '';
   toastIcon: string = 'checkmark-circle-outline';
+  selectedCurrency: string = 'USD';
 
   materials: Material[] = [
     {
@@ -86,7 +88,7 @@ export class MaterialsLibraryPage {
     },
     {
       id: 4,
-      name: 'Brass Faucet Floor',
+      name: 'Brass Faucet Flooring',
       price: 199.5,
       image: '../../../assets/materials/materials4.png',
       category: 'fixtures',
@@ -127,7 +129,10 @@ export class MaterialsLibraryPage {
 
   filteredMaterials: Material[] = [];
 
-  constructor(private modalController: ModalController) {
+  constructor(
+    private modalController: ModalController,
+    private currencyService: CurrencyService,
+  ) {
     addIcons({
       arrowBack,
       menuOutline,
@@ -142,6 +147,31 @@ export class MaterialsLibraryPage {
     });
 
     this.filteredMaterials = [...this.materials];
+  }
+
+  ngOnInit() {
+    this.loadCurrency();
+    this.fetchRates();
+  }
+
+  // ✅ Load saved currency preference
+  loadCurrency() {
+    this.selectedCurrency = this.currencyService.getSelectedCurrency();
+  }
+
+  // ✅ Fetch exchange rates
+  async fetchRates() {
+    await this.currencyService.fetchRates();
+  }
+
+  // ✅ Get formatted price in selected currency
+  getFormattedPrice(price: number): string {
+    return this.currencyService.formatPrice(price, this.selectedCurrency);
+  }
+
+  // ✅ Get currency symbol
+  getCurrencySymbol(): string {
+    return this.currencyService.getCurrencySymbol(this.selectedCurrency);
   }
 
   // Menu action
@@ -217,6 +247,7 @@ export class MaterialsLibraryPage {
       component: MaterialDetailsModalComponent,
       componentProps: {
         material: material,
+        formattedPrice: this.getFormattedPrice(material.price), // ✅ Pass formatted price
       },
       cssClass: 'material-details-modal',
       backdropDismiss: true,
@@ -231,13 +262,12 @@ export class MaterialsLibraryPage {
             'checkmark-circle-outline',
           );
         }
-        // Update the material in the main list if favorite status changed
         const index = this.materials.findIndex(
           (m) => m.id === result.data.material.id,
         );
         if (index !== -1) {
           this.materials[index] = result.data.material;
-          this.applyFilters(); // Refresh the filtered list
+          this.applyFilters();
         }
       }
     });

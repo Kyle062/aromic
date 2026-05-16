@@ -73,6 +73,12 @@
             Fixtures
           </button>
         </div>
+
+        <!-- ✅ Currency Selector -->
+        <div class="currency-selector" *ngIf="selectedCurrency !== 'USD'">
+          <ion-icon name="cash-outline"></ion-icon>
+          <span>Prices shown in {{ selectedCurrency }}</span>
+        </div>
       </div>
 
       <div class="materials-grid">
@@ -94,7 +100,8 @@
                 <div class="card-info">
                   <div class="text-meta">
                     <h4>{{ material.name }}</h4>
-                    <p>{{ material.price | currency }}</p>
+                    <!-- ✅ Formatted price with currency -->
+                    <p>{{ getFormattedPrice(material.price) }}</p>
                     <div class="rating" *ngIf="material.rating">
                       <ion-icon name="star"></ion-icon>
                       <span>{{ material.rating }}</span>

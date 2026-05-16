@@ -32,7 +32,7 @@ interface ProjectData {
   templateUrl: './new-architecture-project.page.html',
   styleUrls: ['./new-architecture-project.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, RouterLink],
+  imports: [IonicModule, CommonModule, FormsModule],
 })
 export class NewArchitectureProjectPage {
   currentRoom: number = 1;

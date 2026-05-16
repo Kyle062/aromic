@@ -1,11 +1,7 @@
 <ion-content [fullscreen]="true" class="page-content">
   <!-- Fixed Background Image -->
   <div class="background-container">
-    <img
-      src="../../assets/aromic background.png"
-      alt="Background"
-      class="bg-img"
-    />
+    <img src="../../assets/aromic background.png" alt="Background" class="bg-img" />
   </div>
 
   <!-- Top Navigation -->
@@ -13,29 +9,21 @@
     <div class="logo-container">
       <img src="../../assets/homepageImages/logo.png" alt="Logo" />
     </div>
-    <ion-icon
-      name="menu-outline"
-      class="menu-icon"
-      (click)="openMenu()"
-    ></ion-icon>
+    <ion-icon name="menu-outline" class="menu-icon" (click)="openMenu()"></ion-icon>
   </div>
 
   <!-- Main Container -->
   <div class="main-container">
     <!-- Header -->
     <div class="container-header">
-      <ion-back-button
-        defaultHref="/profile"
-        text=""
-        icon="arrow-back"
-        class="back-icon"
-      ></ion-back-button>
+      <ion-back-button defaultHref="/profile" text="" icon="arrow-back" class="back-icon"></ion-back-button>
       <h1 class="page-title">Settings</h1>
       <div class="spacer"></div>
     </div>
 
     <!-- Settings Sections -->
     <div class="settings-sections">
+      
       <!-- Account Section -->
       <div class="section">
         <h3 class="section-title">Account</h3>
@@ -89,10 +77,7 @@
               </div>
               <span>Dark Mode</span>
             </div>
-            <ion-toggle
-              [checked]="darkMode"
-              (ionChange)="toggleDarkMode($event)"
-            ></ion-toggle>
+            <ion-toggle [checked]="darkMode" (ionChange)="toggleDarkMode($event)"></ion-toggle>
           </div>
 
           <div class="setting-item">
@@ -102,10 +87,7 @@
               </div>
               <span>Notifications</span>
             </div>
-            <ion-toggle
-              [checked]="notifications"
-              (ionChange)="toggleNotifications($event)"
-            ></ion-toggle>
+            <ion-toggle [checked]="notifications" (ionChange)="toggleNotifications($event)"></ion-toggle>
           </div>
 
           <div
@@ -119,6 +101,20 @@
               <span>Language</span>
             </div>
             <span class="setting-value">{{ selectedLanguage }}</span>
+          </div>
+
+          <!-- ✅ Currency Selection -->
+          <div
+            class="setting-item"
+            (click)="openSelectModal('Currency', ['USD', 'PHP', 'EUR', 'GBP', 'JPY', 'AUD'], 'cash-outline')"
+          >
+            <div class="setting-left">
+              <div class="icon-circle">
+                <ion-icon name="cash-outline"></ion-icon>
+              </div>
+              <span>Currency</span>
+            </div>
+            <span class="setting-value">{{ selectedCurrency }}</span>
           </div>
 
           <div
@@ -292,8 +288,6 @@
         <h3>Edit Profile</h3>
         <ion-icon name="close-outline" class="close-modal-icon" (click)="closeEditProfileModal()"></ion-icon>
       </div>
-
-      <!-- Profile Picture -->
       <div class="profile-pic-section">
         <div class="profile-pic-wrapper">
           <img [src]="profileData.avatar" alt="Profile" class="profile-pic" />
@@ -303,36 +297,28 @@
         </div>
         <p class="change-pic-text">Tap to change photo</p>
       </div>
-
-      <!-- Form Fields -->
       <div class="form-fields">
         <div class="field-group">
           <label>Full Name</label>
           <input type="text" [(ngModel)]="editForm.name" placeholder="Enter your name" class="field-input" />
         </div>
-
         <div class="field-group">
           <label>Username</label>
           <input type="text" [(ngModel)]="editForm.username" placeholder="Enter username" class="field-input" />
         </div>
-
         <div class="field-group">
           <label>Email Address</label>
           <input type="email" [(ngModel)]="editForm.email" placeholder="Enter email" class="field-input" />
         </div>
-
         <div class="field-group">
           <label>Phone Number</label>
           <input type="tel" [(ngModel)]="editForm.phone" placeholder="Enter phone number" class="field-input" />
         </div>
-
         <div class="field-group">
           <label>Designer ID</label>
           <input type="text" [(ngModel)]="editForm.designerId" placeholder="Enter designer ID" class="field-input" />
         </div>
       </div>
-
-      <!-- Action Buttons -->
       <div class="edit-actions">
         <button class="btn-cancel" (click)="closeEditProfileModal()">Cancel</button>
         <button class="btn-save" (click)="saveProfile()">Save Changes</button>
@@ -375,7 +361,7 @@
     </div>
   </div>
 
-  <!-- ✅ CONTENT MODAL (Terms/Privacy) -->
+  <!-- ✅ CONTENT MODAL -->
   <div class="modal-overlay" *ngIf="showContentModal" (click)="closeContentModal()">
     <div class="modal-content content-modal" (click)="$event.stopPropagation()">
       <h3>{{ modalTitle }}</h3>
@@ -398,4 +384,5 @@
       </div>
     </div>
   </div>
+  <div style="height: 50px;"></div>
 </ion-content>
