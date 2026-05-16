@@ -79,13 +79,7 @@ export class HomePage {
       image: '../../../assets/projects/project4.png',
       progress: 100,
     },
-    {
-      name: 'Urban Loft',
-      rooms: 2,
-      floors: 1,
-      image: '../../../assets/projects/project2.png',
-      progress: 30,
-    },
+   
   ];
 
   constructor(private router: Router) {
