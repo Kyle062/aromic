@@ -20,7 +20,7 @@
   width: 100%;
 }
 
-/* 3. Top Header - Add horizontal padding back */
+/* 3. Top Header */
 .top-header {
   display: flex;
   justify-content: space-between;
@@ -38,7 +38,7 @@
   }
 }
 
-/* 4. Glassmorphism Header - Add margins */
+/* 4. Glassmorphism Header */
 .glass-header {
   background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(25px);
@@ -46,7 +46,7 @@
   border-radius: 40px;
   padding: 20px 20px;
   position: relative;
-  margin: 15px 20px 0 20px; /* Added left/right margins */
+  margin: 15px 20px 0 20px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   overflow: visible;
 
@@ -121,7 +121,7 @@
   }
 }
 
-/* 7. Main Content Container - Full width fix */
+/* 7. Main Content Container */
 .glass-2 {
   background: #f3f3f2;
   backdrop-filter: blur(25px);
@@ -131,12 +131,12 @@
   position: relative;
   margin-top: 15px;
   margin-bottom: 0;
-  width: 100%; /* Full width */
+  width: 100%;
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-bottom: none;
   border-left: none;
   border-right: none;
-  box-sizing: border-box; /* Ensure padding doesn't add to width */
+  box-sizing: border-box;
 }
 
 /* 8. Category Grid */
@@ -154,9 +154,9 @@
     height: 100%;
     object-fit: cover;
   }
-  
+
   &:active {
-    transform: scale(0.98); // Subtle "press" effect
+    transform: scale(0.98);
     transition: transform 0.1s;
   }
 
@@ -197,68 +197,105 @@
 
 .recent-card {
   background: #fff9f2;
-  border-radius: 35px;
+  border-radius: 25px;
   padding: 12px 15px;
   display: flex;
   align-items: center;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  position: relative;
+
+  &:active {
+    transform: scale(0.98);
+  }
 
   .thumb {
-    width: 75px;
-    height: 65px;
-    border-radius: 22px;
+    width: 65px;
+    height: 55px;
+    border-radius: 18px;
     object-fit: cover;
   }
 
   .details {
-    margin-left: 15px;
+    margin-left: 12px;
+    flex: 1;
 
     h4 {
       margin: 0;
-      font-size: 1.05rem;
+      font-size: 0.9rem;
       font-weight: 700;
       color: #1a1a1a;
     }
 
     p {
       margin: 2px 0;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       color: #888;
     }
 
     .status-bar {
       display: flex;
       gap: 4px;
-      margin-top: 6px;
+      margin-top: 4px;
 
       .segment {
         height: 3px;
-        width: 25px;
+        width: 20px;
         background: #ddd;
         border-radius: 10px;
 
         &.active {
           background: #000;
-          width: 35px;
+          width: 30px;
         }
       }
     }
   }
 
+  // ✅ Status Badge
+  .status-badge {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-size: 0.55rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    &.completed {
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+
+    &.in-progress {
+      background: #fff3e0;
+      color: #e65100;
+    }
+
+    &.started {
+      background: #e3f2fd;
+      color: #1565c0;
+    }
+  }
+
   .continue-btn {
-    margin-left: auto;
+    margin-left: 8px;
     background: black;
     color: white;
     border: none;
-    border-radius: 18px;
-    padding: 8px 16px;
-    font-size: 0.7rem;
+    border-radius: 14px;
+    padding: 6px 12px;
+    font-size: 0.65rem;
     font-weight: 600;
     display: flex;
     align-items: center;
 
     span {
-      margin-left: 5px;
+      margin-left: 4px;
       font-weight: 300;
     }
   }

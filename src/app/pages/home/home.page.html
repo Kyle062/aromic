@@ -93,19 +93,31 @@
         </ion-row>
       </ion-grid>
 
+      <!-- ✅ Recent Projects Section -->
       <h3 class="recent-title">Recent Projects</h3>
-      <div class="recent-card">
-        <img src="../../assets/homepageImages/project1.png" class="thumb" />
+
+      <div
+        class="recent-card"
+        *ngFor="let project of recentProjects"
+        (click)="continueProject(project)"
+      >
+        <img [src]="project.image" class="thumb" alt="{{ project.name }}" />
         <div class="details">
-          <h4>Modern Villa</h4>
-          <p>3 rooms • 1 floor</p>
+          <h4>{{ project.name }}</h4>
+          <p>{{ project.rooms }} rooms • {{ project.floors }} floor<span *ngIf="project.floors > 1">s</span></p>
           <div class="status-bar">
-            <span class="segment active"></span>
-            <span class="segment"></span>
+            <span class="segment" [class.active]="project.progress >= 30"></span>
+            <span class="segment" [class.active]="project.progress >= 75"></span>
           </div>
+        </div>
+        <div class="status-badge" [class]="getStatusClass(project.progress)">
+          {{ getProgressStatus(project.progress) }}
         </div>
         <button class="continue-btn">Continue <span>&gt;</span></button>
       </div>
+
+      <!-- Bottom Spacing -->
+      <div style="height: 40px;"></div>
     </div>
   </div>
 </ion-content>
