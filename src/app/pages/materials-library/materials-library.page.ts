@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ModalController } from '@ionic/angular';
 import { CurrencyService } from '../../services/currency.service';
+import { Subscription } from 'rxjs';
 import { addIcons } from 'ionicons';
 import {
   arrowBack,
@@ -38,13 +39,16 @@ interface Material {
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule],
 })
-export class MaterialsLibraryPage implements OnInit {
+export class MaterialsLibraryPage implements OnInit, OnDestroy {
   searchQuery: string = '';
   activeFilter: string = 'all';
   showToast: boolean = false;
   toastMessage: string = '';
   toastIcon: string = 'checkmark-circle-outline';
   selectedCurrency: string = 'USD';
+  
+  // ✅ Subscription for currency changes
+  private currencySubscription!: Subscription;
 
   materials: Material[] = [
     {
@@ -88,7 +92,7 @@ export class MaterialsLibraryPage implements OnInit {
     },
     {
       id: 4,
-      name: 'Brass Faucet Flooring',
+      name: 'Brass Faucet',
       price: 199.5,
       image: '../../../assets/materials/materials4.png',
       category: 'fixtures',
@@ -152,34 +156,49 @@ export class MaterialsLibraryPage implements OnInit {
   ngOnInit() {
     this.loadCurrency();
     this.fetchRates();
+
+    // ✅ Subscribe to currency changes - updates prices automatically!
+    this.currencySubscription = this.currencyService.currencyChanged$.subscribe((newCurrency) => {
+      console.log('💱 Currency changed to:', newCurrency);
+      this.selectedCurrency = newCurrency;
+      // Force Angular to re-render prices
+      this.filteredMaterials = [...this.filteredMaterials];
+    });
   }
 
-  // ✅ Load saved currency preference
+  // ✅ Unsubscribe to prevent memory leaks
+  ngOnDestroy() {
+    if (this.currencySubscription) {
+      this.currencySubscription.unsubscribe();
+    }
+  }
+
+  // ✅ Refresh prices when page becomes visible (from tabs)
+  ionViewWillEnter() {
+    this.selectedCurrency = this.currencyService.getSelectedCurrency();
+    this.filteredMaterials = [...this.filteredMaterials];
+  }
+
   loadCurrency() {
     this.selectedCurrency = this.currencyService.getSelectedCurrency();
   }
 
-  // ✅ Fetch exchange rates
   async fetchRates() {
     await this.currencyService.fetchRates();
   }
 
-  // ✅ Get formatted price in selected currency
   getFormattedPrice(price: number): string {
     return this.currencyService.formatPrice(price, this.selectedCurrency);
   }
 
-  // ✅ Get currency symbol
   getCurrencySymbol(): string {
     return this.currencyService.getCurrencySymbol(this.selectedCurrency);
   }
 
-  // Menu action
   openMenu() {
     this.showToastMessage('Menu opened', 'menu-outline');
   }
 
-  // Search functionality
   clearSearch() {
     this.searchQuery = '';
     this.applyFilters();
@@ -189,23 +208,19 @@ export class MaterialsLibraryPage implements OnInit {
     this.applyFilters();
   }
 
-  // Filter materials by category
   filterMaterials(category: string) {
     this.activeFilter = category;
     this.showToastMessage(`Showing ${category} materials`, 'layers-outline');
     this.applyFilters();
   }
 
-  // Apply both category and search filters
   private applyFilters() {
     let filtered = this.materials;
 
-    // Apply category filter
     if (this.activeFilter !== 'all') {
       filtered = filtered.filter((m) => m.category === this.activeFilter);
     }
 
-    // Apply search filter
     if (this.searchQuery && this.searchQuery.trim()) {
       const query = this.searchQuery.toLowerCase().trim();
       filtered = filtered.filter(
@@ -218,7 +233,6 @@ export class MaterialsLibraryPage implements OnInit {
     this.filteredMaterials = filtered;
   }
 
-  // Reset all filters
   resetFilters() {
     this.activeFilter = 'all';
     this.searchQuery = '';
@@ -226,7 +240,6 @@ export class MaterialsLibraryPage implements OnInit {
     this.showToastMessage('Filters reset', 'refresh-outline');
   }
 
-  // Toggle favorite
   toggleFavorite(material: Material, event: Event) {
     event.stopPropagation();
     material.isFavorite = !material.isFavorite;
@@ -241,13 +254,12 @@ export class MaterialsLibraryPage implements OnInit {
     );
   }
 
-  // View material details - Opens modal
   async viewMaterialDetails(material: Material) {
     const modal = await this.modalController.create({
       component: MaterialDetailsModalComponent,
       componentProps: {
         material: material,
-        formattedPrice: this.getFormattedPrice(material.price), // ✅ Pass formatted price
+        formattedPrice: this.getFormattedPrice(material.price),
       },
       cssClass: 'material-details-modal',
       backdropDismiss: true,
@@ -275,7 +287,6 @@ export class MaterialsLibraryPage implements OnInit {
     return await modal.present();
   }
 
-  // Toast notification helper
   private showToastMessage(
     message: string,
     icon: string = 'checkmark-circle-outline',
